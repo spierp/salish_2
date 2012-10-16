@@ -1,0 +1,239 @@
+body {
+  padding-top: 80px;
+	font-family:'HelveticaNeueW01-45Ligh';
+}
+
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+	-moz-box-sizing: boder-box;
+	-webkit-box-sizing: boder-box;
+	box-sizing: border-box;
+}
+
+/* universal */
+
+
+html {
+  overflow-y: scroll;
+	height: 100%;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* typography */
+
+body {
+	font-family:'HelveticaNeueW01-45Ligh';
+	font-size: 14px;
+}
+
+.hero-unit {
+  padding: 20px;
+  margin-bottom: 30px;
+	height: 100%;
+  background-color: #eeeeee;
+	background-image: url(teepee.jpg);
+	     background-size: 100%;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+
+}
+
+h1 {
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.hero-unit h1 {
+  margin-bottom: 0;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: inherit;
+}
+
+h2 {
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $grayLight;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $grayMediumLight;
+  color: $grayLight;
+  a {
+    color: $gray;
+    &:hover { 
+      color: $grayDarker;
+    }
+  }  
+  small { 
+    float: left; 
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+/* Misc */
+
+.debug_dump {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-top: 45px;
+	@include box_sizing;
+}
+
+/* Sidebar */
+
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 2.0em;
+			padding: 2px;
+      text-align: right;
+      letter-spacing: 2px;
+      margin-bottom: 3px;
+    }
+  }
+}
+
+.gravatar {
+  float: right;
+  margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom:10px;
+}
+
+/* forms */
+
+input, select, .uneditable-input {
+  font-size: 1.5em !important;
+  width: 285px;
+  padding: 30px, 10px,30px,10px;
+  height: 40px !important;
+  margin-bottom: 15px;
+	text-align:left;
+  @include box_sizing;
+}
+
+label {
+font-size: 16px;
+font-style: bold;
+}
+
+#error_explanation {
+	color: #f00;
+	ul {
+		list-style: none;
+		margin: 0 0 18px 0;
+	}
+}
+
+.field_with_errors {
+	@extend .control-group;
+	@extend .error;
+}
+
+/* users index */
+.users {
+	list-style: none;
+	margin: 0;
+	li {
+		overflow: auto;
+		padding: 10px 0;
+		border-top: 1px solid $grayLighter;
+		&:last-child{
+			border-bottom: 1px solid $grayLighter;
+		}
+	}
+}
+
+.formcenter {
+	display: block;
+	margin: 0 auto;
+	width: 285px;
+}
+
+/* posts */
+
+.timestamp{
+	color: $grayLight;
+}
+
+.posts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+
+.compose{
+	font-size: 16px;
+	height: 65px;
+	width: 100%;
+	margin-top: 10px;
+	@include box_sizing;
+}
+
+.input{
+	font-size: 16px;
+	width: auto;
+}
