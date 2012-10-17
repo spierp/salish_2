@@ -28,7 +28,7 @@ Salish::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+   config.force_ssl = true
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
@@ -65,7 +65,7 @@ Salish::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
-  config.action_mailer.default_url_options = { :host => 'http://safe-depths-1652.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => "https://safe-depths-1652.herokuapp.com" }
   
   #SMTP 
     config.action_mailer.delivery_method = :smtp
