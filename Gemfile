@@ -16,7 +16,7 @@ gem "devise-async"
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
-gem "unicorn"
+#gem "unicorn"
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
