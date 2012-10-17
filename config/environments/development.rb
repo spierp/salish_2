@@ -36,7 +36,7 @@ Salish::Application.configure do
   config.assets.debug = true
   
   #devise config settings
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
   
   #SMTP
     config.action_mailer.delivery_method = :smtp
@@ -45,7 +45,8 @@ Salish::Application.configure do
     :port                 => 587,
     :user_name            => 'salish.mailer@gmail.com',
     :password             => 's@lishMailer',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  }
+#    :authentication       => 'plain',
+#    :enable_starttls_auto => true  
+}
   
 end

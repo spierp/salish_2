@@ -65,7 +65,7 @@ Salish::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
-  config.action_mailer.default_url_options = { :host => "https://safe-depths-1652.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => "safe-depths-1652.herokuapp.com" }
   
   #SMTP 
     config.action_mailer.delivery_method = :smtp
@@ -74,7 +74,8 @@ Salish::Application.configure do
     :port                 => 587,
     :user_name            => 'salish.mailer@gmail.com',
     :password             => 's@lishMailer',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  }
+#    :authentication       => 'plain',
+#    :enable_starttls_auto => true  
+}
     
 end
