@@ -12,7 +12,7 @@ gem "carrierwave"
 gem "rmagick"
 gem 'fog'
 gem 'devise'
-#gem "devise-async"
+gem "devise-async"
 gem 'sidekiq'
 gem 'sinatra'
 gem 'slim'
