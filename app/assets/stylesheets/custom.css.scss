@@ -164,7 +164,7 @@ aside {
 input, select, .uneditable-input {
   font-size: 1.5em !important;
   width: 285px;
-  padding: 30px, 10px,30px,10px;
+  padding: 0px, 0px, 0px,0px;
   height: 40px !important;
   margin-bottom: 15px;
 	text-align:left;
@@ -172,8 +172,10 @@ input, select, .uneditable-input {
 }
 
 label {
+display: inline;	
 font-size: 16px;
 font-style: bold;
+margin-bottom: 5px;
 }
 
 #error_explanation {
