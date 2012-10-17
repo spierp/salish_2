@@ -14,7 +14,7 @@ gem 'fog'
 gem 'devise'
 gem "devise-async"
 gem 'sidekiq'
-gem 'sinatra', require: false
+gem 'sinatra'
 gem 'slim'
 gem "unicorn"
 
