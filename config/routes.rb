@@ -7,8 +7,12 @@ Salish::Application.routes.draw do
   root to: 'static_pages#home'
   
   match '/about', to: 'static_pages#about'
+  
+  constraint = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user.admin? }
+  constraints constraint do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
-  mount Sidekiq::Web, at: '/sidekiq'
 
    
   # The priority is based upon order of creation:
