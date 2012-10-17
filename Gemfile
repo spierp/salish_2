@@ -12,6 +12,10 @@ gem "carrierwave"
 gem "rmagick"
 gem 'fog'
 gem 'devise'
+gem "devise-async"
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

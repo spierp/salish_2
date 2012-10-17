@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Salish::Application.routes.draw do
 
   devise_for :users
@@ -5,6 +7,8 @@ Salish::Application.routes.draw do
   root to: 'static_pages#home'
   
   match '/about', to: 'static_pages#about'
+
+  mount Sidekiq::Web, at: '/sidekiq'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
