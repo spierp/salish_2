@@ -1,0 +1,40 @@
+.btn-large {
+  padding: 10px 16px;
+  font-size: 18px !important;
+  line-height: normal;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.btn-primary {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #D9CEB2;
+  *background-color: #7A6A53;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#D9CEB2), to(#7A6A53));
+  background-image: -webkit-linear-gradient(top, #D9CEB2, #7A6A53);
+  background-image: -o-linear-gradient(top, #D9CEB2, #7A6A53);
+  background-image: linear-gradient(to bottom, #D9CEB2, #7A6A53);
+  background-image: -moz-linear-gradient(top, #D9CEB2, #7A6A53);
+  background-repeat: repeat-x;
+  border-color: #7A6A53 #7A6A53 #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#D9CEB2', endColorstr='#7A6A53', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: #7A6A53;
+  *background-color: #003bb3;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #003399 \9;
+}
