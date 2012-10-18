@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+   
+  mount_uploader :image, ImageUploader 
   
   # Include default devise modules. Others available are:
   # :token_authenticatable,
@@ -10,7 +12,9 @@ class User < ActiveRecord::Base
   include Devise::Async::Model
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :image
   validates_presence_of :first_name, :last_name
   # attr_accessible :title, :body
+
+  
 end
