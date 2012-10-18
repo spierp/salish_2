@@ -3,7 +3,8 @@ require 'sidekiq/web'
 Salish::Application.routes.draw do
 
   devise_for :users
-
+  resources :users
+  
   root to: 'static_pages#home'
   
   match '/about', to: 'static_pages#about'
