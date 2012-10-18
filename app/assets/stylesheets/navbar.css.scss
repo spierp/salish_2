@@ -18,6 +18,14 @@
   }
 }
 
+.navbar .divider-vertical {
+  height: 60px;
+  margin: 0px;
+background-color: #E0E0E0;
+  border-right: 1px solid #E0E0E0;
+  border-left: 0px solid #E0E0E0;
+}
+
 .navbar-inner {
   background-color: #fff;
   background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
