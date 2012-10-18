@@ -96,7 +96,7 @@
 
 .navbar .nav > li > a {
 	font-size: 1.2em;
-  line-height: 30px;
+  line-height: 41px;
   color: #808080;
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
 }
@@ -104,10 +104,18 @@
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
   color: #333333;
-  text-decoration: underline;
-  background-color: transparent;
+  text-decoration: none;
+  background-color: #E0E0E0;
 }
 
 .hero-unit {
   background-color: #D5DED9;
+}
+
+.navprofilepic {
+	padding-top: -5px;
+}
+
+.dropdown-toggle:hover {
+	background: black;
 }
