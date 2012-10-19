@@ -1,0 +1,15 @@
+<% provide(:title, "Start a tribe")%>
+<h2>Start a tribe</h2>
+
+<div class="formcenter">
+
+			<%= form_for(@tribe) do |f| %>
+				<%#= render 'shared/error_messages', object: @tribe %>	
+				<%= f.label :name %>
+				<%= f.text_field :name %>
+	
+				<%= f.submit "Start Tribe", class: "btn btn-large btn-primary"%>
+	
+			<% end %>
+
+</div>

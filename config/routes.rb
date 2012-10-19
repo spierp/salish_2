@@ -4,6 +4,8 @@ Salish::Application.routes.draw do
 
   devise_for :users
   resources :users, :only => [:index, :show] 
+  resources :tribes
+  resources :memberships
   
   root to: 'static_pages#home'
   
