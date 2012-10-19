@@ -11,11 +11,13 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem "carrierwave"
 gem "rmagick"
 gem 'fog'
+
 gem 'devise'
+gem "devise-async"
+gem "devise_invitable"
 
 gem "unicorn"
 gem "redis"
-gem "devise-async"
 gem 'sidekiq'
 gem 'sinatra'
 gem 'slim'
