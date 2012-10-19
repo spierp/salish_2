@@ -13,8 +13,6 @@ Salish::Application.routes.draw do
   constraints constraint do
     mount Sidekiq::Web => '/sidekiq'
   end
-
-
    
   # The priority is based upon order of creation:
   # first created -> highest priority.
