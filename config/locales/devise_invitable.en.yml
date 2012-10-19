@@ -9,8 +9,8 @@ en:
         header: "Send invitation"
         submit_button: "Send an invitation"
       edit:
-        header: "Set your password"
-        submit_button: "Set my password"
+        header: "Please activate your account"
+        submit_button: "Activate"
     mailer:
       invitation_instructions:
-        subject: 'Invitation instructions'
+        subject: 'Salish - Invitation instructions'

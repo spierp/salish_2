@@ -3,11 +3,12 @@ require 'sidekiq/web'
 Salish::Application.routes.draw do
 
   devise_for :users
-  resources :users
+  resources :users, :only => [:index, :show] 
   
   root to: 'static_pages#home'
   
   match '/about', to: 'static_pages#about'
+  match '/users/:id', :to => 'users#destroy', :as => :destroy_user, :via => :delete
   
   constraint = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user.admin? }
   constraints constraint do
