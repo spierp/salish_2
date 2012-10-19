@@ -6,10 +6,7 @@ class TribesController < ApplicationController
   end
 
   def index
-    if current_user.admin?
     @tribes = Tribe.paginate(page: params[:page])
-    else redirect_to root_path
-    end
   end
 
   def show
@@ -25,5 +22,19 @@ class TribesController < ApplicationController
       render 'new'
     end
   end
-  
+
+  def join
+      @tribe = Tribe.find(params[:id])
+      @m = @tribe.memberships.build(:user_id => current_user.id)
+      respond_to do |format|
+        if @m.save
+          format.html { redirect_to(@tribe, :notice => 'You have joined this group.') }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to(@tribe, :notice => 'Join error.') }
+          format.xml  { render :xml => @tribe.errors, :status => :unprocessable_entity }
+        end
+      end
+    end
+
 end
