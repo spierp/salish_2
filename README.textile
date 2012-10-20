@@ -1,0 +1,13 @@
+h1. Salish
+
+h2. Less is more.
+
+h2. Under the hood:
+
+* "sidekiq":https://github.com/mperham/sidekiq for background processing.  Handles multiple jobs concurrently using threads instead of processes for max efficiency.
+* "Carrierwave":https://github.com/jnicklas/carrierwave and "Fog":https://github.com/fog/fog for cloud storage on 
+* "Twitter Bootstrap":http://twitter.github.com/bootstrap/ is the front-end framework for CSS styling. 
+
+yjid dfglhk jdfglh kjfdg lkdfj hldfgj hldgfk jldgk
+dfgh ldfghj gkl
+
