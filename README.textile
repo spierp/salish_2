@@ -2,28 +2,36 @@ h1. "Salish":https://sali.sh.  Less is more.
 
 h4.  Status: Closed Beta.  
 
-h3.  Functionality
+h3.  Concept
 
-* Invitation only (each user gets 5 invitations)
-* Join or start a tribe.
-* Post once a week.
-* Your post is shared with fellow tribe members.
+h4. A social network that won't waste your time.
 
+h5. Principle: Limit quantity to increase quality. Share less, say more.
+
+* Join a tribe or start your own.
+* Post through out the week (as little or as much as you want).
+* Pick your favorite post to share at the weekly campfire. Your most recent post is chosen by default.  
+* Salish will email you a private link to your weekly campfire.
+* Interact at the campfire with comments.
+
+h3. Deployment:
+
+* Heroku cedar stack.  
+* 100% SSL encrypted with Heroku SSL Endpoint. "More":https://devcenter.heroku.com/articles/ssl-endpoint.
+* All application traffic routed through subdomain-based hostnames. "More":https://devcenter.heroku.com/articles/avoiding-naked-domains-dns-arecords.
+* Multithreading supported by a "Redis":http://redis.io/ instance.
+* Git version control.
 
 h3. Under the hood:
 
-* 100% SSL encrypted. 
-* Deployed to Heroku
+* "Sidekiq":https://github.com/mperham/sidekiq background processing.  Handles multiple jobs concurrently using threads instead of processes for increased efficiency.
 * "PostgreSQL":http://en.wikipedia.org/wiki/PostgreSQL object-relational database.
-* "Sidekiq":https://github.com/mperham/sidekiq background processing.  Handles multiple jobs concurrently using threads instead of processes for max efficiency.
 * "Carrierwave":https://github.com/jnicklas/carrierwave and "Fog":https://github.com/fog/fog cloud storage on Amazon S3 servers.
-* "Devise":https://github.com/plataformatec/devise  user authentication.
+* "Devise":https://github.com/plataformatec/devise user authentication.
 * "Twitter Bootstrap":http://twitter.github.com/bootstrap/ front-end framework for CSS styling with added "SASS":http://sass-lang.com/ functionality.  
 * "RMagick":https://github.com/rmagick/rmagick image processing.  
 
-yjid dfglhk jdfglh kjfdg lkdfj hldfgj hldgfk jldgk
-dfgh ldfghj gkl
 
 h4.  Known bugs/issues
 * Background job for confirmation emails should be set to retry => false.  
-* Background job for confirmation emails should be set to retry => false.  
+ 
