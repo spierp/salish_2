@@ -1,7 +1,0 @@
-== Welcome to Salish
-
-Salish is a simple sharing application where less is more.
-
-= known issues...
-devise-async / sidekiq email retry should be false. (currently retry)
-
