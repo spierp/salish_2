@@ -1,13 +1,29 @@
-h1. Salish
+h1. "Salish":https://sali.sh.  Less is more.
 
-h2. Less is more.
+h4.  Status: Closed Beta.  
+
+h3.  Functionality
+
+* Invitation only (each user gets 5 invitations)
+* Join or start a tribe.
+* Post once a week.
+* Your post is shared with fellow tribe members.
+
 
 h3. Under the hood:
 
-* "sidekiq":https://github.com/mperham/sidekiq for background processing.  Handles multiple jobs concurrently using threads instead of processes for max efficiency.
-* "Carrierwave":https://github.com/jnicklas/carrierwave and "Fog":https://github.com/fog/fog for cloud storage on 
-* "Twitter Bootstrap":http://twitter.github.com/bootstrap/ is the front-end framework for CSS styling. 
+* 100% SSL encrypted. 
+* Deployed to Heroku
+* "PostgreSQL":http://en.wikipedia.org/wiki/PostgreSQL object-relational database.
+* "Sidekiq":https://github.com/mperham/sidekiq background processing.  Handles multiple jobs concurrently using threads instead of processes for max efficiency.
+* "Carrierwave":https://github.com/jnicklas/carrierwave and "Fog":https://github.com/fog/fog cloud storage on Amazon S3 servers.
+* "Devise":https://github.com/plataformatec/devise  user authentication.
+* "Twitter Bootstrap":http://twitter.github.com/bootstrap/ front-end framework for CSS styling with added "SASS":http://sass-lang.com/ functionality.  
+* "RMagick":https://github.com/rmagick/rmagick image processing.  
 
 yjid dfglhk jdfglh kjfdg lkdfj hldfgj hldgfk jldgk
 dfgh ldfghj gkl
 
+h4.  Known bugs/issues
+* Background job for confirmation emails should be set to retry => false.  
+* Background job for confirmation emails should be set to retry => false.  
