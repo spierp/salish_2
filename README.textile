@@ -10,9 +10,9 @@ h5. Principle: Limit quantity to increase quality. Share less, say more.
 
 * Join a tribe or start your own.
 * Post through out the week (as little or as much as you want).
-* Pick your favorite post to share at the weekly campfire. Your most recent post is chosen by default.  
-* Salish will email you a private link to your weekly campfire.
-* Interact at the campfire with comments.
+* Pick your favorite post to share at the weekly circle. Your most recent post is chosen by default.  
+* Salish will email you a private link to your tribes' weekly circle.
+* Interact at the circle with comments and markup.
 
 h3. Deployment:
 
@@ -25,6 +25,7 @@ h3. Deployment:
 h3. Under the hood:
 
 * "Sidekiq":https://github.com/mperham/sidekiq background processing.  Handles multiple jobs concurrently using threads instead of processes for increased efficiency.
+* "Sinatra":https://github.com/sinatra/sinatra based web monitor for Sidekiq workers.
 * "PostgreSQL":http://en.wikipedia.org/wiki/PostgreSQL object-relational database.
 * "Carrierwave":https://github.com/jnicklas/carrierwave and "Fog":https://github.com/fog/fog cloud storage on Amazon S3 servers.
 * "Devise":https://github.com/plataformatec/devise user authentication.
