@@ -16,7 +16,7 @@ h5. Principle: Limit quantity to increase quality. Share less, say more.
 
 h3. Deployment:
 
-* Heroku cedar stack.  
+* Heroku cedar stack. "More":https://devcenter.heroku.com/articles/cedar.  
 * 100% SSL encrypted with Heroku SSL Endpoint. "More":https://devcenter.heroku.com/articles/ssl-endpoint.
 * All application traffic routed through subdomain-based hostnames. "More":https://devcenter.heroku.com/articles/avoiding-naked-domains-dns-arecords.
 * Multithreading supported by a "Redis":http://redis.io/ instance.
