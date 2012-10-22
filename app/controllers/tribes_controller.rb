@@ -3,10 +3,15 @@ class TribesController < ApplicationController
 
   def new
     @tribe = Tribe.new
+
   end
 
   def index
-    @tribes = Tribe.paginate(page: params[:page])
+      if current_user.admin?
+      @tribes = Tribe.paginate(page: params[:page])
+      else
+      @tribes = current_user.tribes.paginate(page: params[:page])
+    end
   end
 
   def show
@@ -15,6 +20,9 @@ class TribesController < ApplicationController
   
   def create
     @tribe = current_user.tribes.build(params[:tribe])
+    @tribe.users << current_user
+    #need to make tribe creator the tribe owner.
+    #@tribe.owner_id = current_user
     if @tribe.save
       flash[:success] = "Tribe started!"
       redirect_to root_path
@@ -26,14 +34,11 @@ class TribesController < ApplicationController
   def join
       @tribe = Tribe.find(params[:id])
       @m = @tribe.memberships.build(:user_id => current_user.id)
-      respond_to do |format|
         if @m.save
-          format.html { redirect_to(@tribe, :notice => 'You have joined this group.') }
-          format.xml  { head :ok }
+          flash[:success] = "Tribe started!"
+          redirect_to root_path
         else
-          format.html { redirect_to(@tribe, :notice => 'Join error.') }
-          format.xml  { render :xml => @tribe.errors, :status => :unprocessable_entity }
-        end
+          render 'new'
       end
     end
 

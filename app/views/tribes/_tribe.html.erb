@@ -1,3 +1,10 @@
 <li>
 	<%= link_to tribe.name, tribe %>
+	<%= will_paginate %>
+
+	<ul class="users">
+		<%= render tribe.users %>
+	</ul>
+
+	<%= will_paginate %>
 </li>

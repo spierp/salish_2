@@ -18,5 +18,6 @@ class User < ActiveRecord::Base
   
   has_many :memberships
   has_many :tribes, :through => :memberships
+  has_many :owned, :class_name => "Tribe", :foreign_key => "owner_id"
 
 end
