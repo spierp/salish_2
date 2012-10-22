@@ -7,4 +7,8 @@
 	</ul>
 
 	<%= will_paginate %>
+	
+	<% if current_user.id == tribe.owner_id %>
+		| <%= link_to "delete", tribe, method: :delete, confirm: "You sure?" %>
+	<% end %>
 </li>

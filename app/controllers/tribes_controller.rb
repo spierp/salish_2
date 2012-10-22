@@ -3,15 +3,18 @@ class TribesController < ApplicationController
 
   def new
     @tribe = Tribe.new
-
   end
 
   def index
       if current_user.admin?
       @tribes = Tribe.paginate(page: params[:page])
       else
-      @tribes = current_user.tribes.paginate(page: params[:page])
-    end
+        if current_user.tribes > 0
+          @tribes = current_user.tribes.paginate(page: params[:page])
+        else
+          redirect_to root_path
+        end
+      end
   end
 
   def show
@@ -21,6 +24,7 @@ class TribesController < ApplicationController
   def create
     @tribe = current_user.tribes.build(params[:tribe])
     @tribe.users << current_user
+    @tribe.owner_id = current_user.id
     #need to make tribe creator the tribe owner.
     #@tribe.owner_id = current_user
     if @tribe.save
@@ -41,5 +45,12 @@ class TribesController < ApplicationController
           render 'new'
       end
     end
+
+
+  def destroy
+    @tribe = Tribe.find(params[:id]).destroy
+    flash[:success] = "Tribe destroyed"
+    redirect_to tribes_path
+  end
 
 end
