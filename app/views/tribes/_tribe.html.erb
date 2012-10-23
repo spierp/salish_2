@@ -3,7 +3,7 @@
 		<%= image_tag tribe.image_url(:large).to_s if tribe.image? %>
 
 		<ul class="users">
-			<%= render tribe.users %>
+			<%= render tribe.members %>
 		</ul>
 
 		<% if current_user.id == tribe.owner_id %>

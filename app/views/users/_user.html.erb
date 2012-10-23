@@ -1,7 +1,7 @@
 <li>
 <%= image_tag user.image_url(:tiny).to_s if user.image? %> <%= user.first_name %> <%= user.last_name %> 
 <% if current_user.admin? %>
-<%#= link_to "Remove from tribe", membership, method: :delete, confirm: "You sure?" %>
+<%#= link_to "Remove from tribe", tribe.kick(user), method: :delete, confirm: "You sure?" %>
 <% else %>
 <% end %>
 </li>

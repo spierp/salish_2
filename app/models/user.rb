@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   include Devise::Async::Model
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :image
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :image, :tribe_invite
   validates_presence_of :first_name, :last_name
   # attr_accessible :title, :body
   
