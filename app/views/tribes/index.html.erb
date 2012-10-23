@@ -1,10 +1,8 @@
 <% provide(:title, 'All Users')%>
-<h2>All Tribes</h2>
+<h2>Your Tribes</h2>
 
-<%= will_paginate %>
-
-<ul class="tribes">
+<ul class="row-fluid">
 	<%= render @tribes %>
 </ul>
 
-<%= will_paginate %>
+<h2><%= link_to "Start a new tribe", new_tribe_path %></h2>

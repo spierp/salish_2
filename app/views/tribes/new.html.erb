@@ -3,11 +3,14 @@
 
 <div class="formcenter">
 
-			<%= form_for(@tribe) do |f| %>
+			<%= form_for(@tribe, :html => { :multipart =>true }) do |f| %>
 				<%#= render 'shared/error_messages', object: @tribe %>	
 				<%= f.label :name %>
 				<%= f.text_field :name %>
-	
+				
+			  	<%= f.label :image, "Tribe Profile" %>
+			  	<%= f.file_field :image %>
+			
 				<%= f.submit "Start Tribe", class: "btn btn-large btn-primary"%>
 	
 			<% end %>
