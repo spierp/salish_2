@@ -18,10 +18,9 @@ before_filter :authenticate_user!
   end
 
   def destroy
-    @membership = current_user.memberships.find(params[:id])
-    @membership.destroy
+    @membership = user.memberships.find(params[:id]).destroy
     flash[:notice] = "Removed membership."
-        redirect_to :back
+    redirect_to root_path
   end
   
 end
