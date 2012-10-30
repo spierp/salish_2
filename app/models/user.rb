@@ -13,11 +13,15 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :image, :tribe_invite
+
+
   validates_presence_of :first_name, :last_name
   # attr_accessible :title, :body
   
   has_many :memberships
   has_many :tribes, :through => :memberships
   has_many :owned, :class_name => "Tribe", :foreign_key => "owner_id"
+  accepts_nested_attributes_for :memberships
+
 
 end

@@ -13,6 +13,11 @@
   <p><%= f.label "tribe" %><br />
   <%= f.text_field :tribe_invite %></p>
 
+	<%= f.fields_for :memberships do |membership_field| %>
+  <div><%= membership_field.label :tribe_id %><br/>
+	<%= membership_field.text_field :tribe_id %><br/></div>
+	<% end %>
+
 <% end -%>
 
   <p><%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-large btn-primary"  %></p>
