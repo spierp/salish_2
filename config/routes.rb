@@ -1,9 +1,9 @@
 require 'sidekiq/web' 
 
 Salish::Application.routes.draw do
-
-  devise_for :users
-  resources :users, :only => [:index, :show] 
+  
+  resources :users
+  devise_for :users, :controllers => { :invitations => 'user_invitations' }
   resources :tribes do
       get 'join', :on => :member
     end

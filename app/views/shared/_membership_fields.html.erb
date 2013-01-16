@@ -1,0 +1,2 @@
+<%= f.label :tribe_id %><br/>
+<%= f.select("tribe_id", Tribe.all.collect {|p| [p.name, p.id ] }, {:prompt => 'Select Tribe'}) %>
