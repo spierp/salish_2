@@ -23,5 +23,8 @@ class User < ActiveRecord::Base
   has_many :owned, :class_name => "Tribe", :foreign_key => "owner_id"
   accepts_nested_attributes_for :memberships
 
+  def combined_name
+    "#{self.first_name} #{self.last_name}"
+  end
 
 end

@@ -10,6 +10,12 @@
   <p><%= f.label field %><br />
   <%= f.text_field field %></p>
 
+  <div><%= f.label :first_name %><br />
+  <%= f.text_field :first_name %></div>
+
+  <div><%= f.label :last_name %><br />
+  <%= f.text_field :last_name %></div>
+
 	<%= f.fields_for :memberships do |builder| %>
 		<%= render "shared/membership_fields", :f => builder %>
 	<% end %>
