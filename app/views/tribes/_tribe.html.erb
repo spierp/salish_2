@@ -1,13 +1,21 @@
-<li class="span4">
-	<div class="row-fluid"><h2><%= tribe.name %></h2>
-		<%= image_tag tribe.image_url(:large).to_s if tribe.image? %>
-
+<li class="span4" style="background:white;
+						-webkit-border-radius: 4px;
+						-moz-border-radius: 4px;
+						border-radius: 4px;
+						-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+						-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+						box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);	">
+		<h2><%= link_to tribe.name, tribe %></h2>
+		<% if tribe.image? %>
+		<%= link_to image_tag(tribe.image_url(:large).to_s, :class => "thumbnail" ), tribe %>
+		<% else %>
+		<% end %>
 		<ul class="users">
 			<%= render tribe.members %>
 		</ul>
 
-		<% if current_user.id == tribe.owner_id %>
-			| <%= link_to "delete", tribe, method: :delete, confirm: "You sure?" %>
+		<% if current_user.admin? %>
+			<%= link_to "delete", tribe, method: :delete, confirm: "You sure?" %>
 		<% end %>
-	</div>
 </li>
+

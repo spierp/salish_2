@@ -1,8 +1,14 @@
 <% provide(:title, 'All Users')%>
 <h2>Your Tribes</h2>
 
-<ul class="row-fluid">
-	<%= render @tribes %>
-</ul>
+<div class="container well">
+	<div class="row">	
+		<h2 style="text-align:center; margin-bottom:10px">Photos</h2>
+		<ul class="thumbnails" id="photos">
+			<%= render @tribes %>
+		</ul>
+	</div>
+</div>
+
 
 <h2><%= link_to "Start a new tribe", new_tribe_path %></h2>

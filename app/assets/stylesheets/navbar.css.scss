@@ -127,3 +127,8 @@ background-color: #E0E0E0;
 .dropdown-toggle:hover {
 	background: black;
 }
+
+.navbar .nav li.dropdown .dropdown-toggle .caret, .navbar .nav li.dropdown.open .caret {
+border-top-color: black;
+border-bottom-color: black;
+}

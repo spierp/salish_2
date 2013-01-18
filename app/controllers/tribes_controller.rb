@@ -15,6 +15,11 @@ class TribesController < ApplicationController
 
   def show
     @tribe = Tribe.find(params[:id])
+#    if @tribe.users << current_user
+#      redirect_to @tribe
+#    else
+#      redirect_to root_path
+#    end
   end
   
   def create
@@ -23,7 +28,7 @@ class TribesController < ApplicationController
     @tribe.owner_id = current_user.id
     if @tribe.save
       flash[:success] = "Tribe started!"
-      redirect_to root_path
+      redirect_to @tribe
     else    
       render 'new'
     end

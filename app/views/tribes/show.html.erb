@@ -1,1 +1,21 @@
 <h2><%= @tribe.name %></h2>
+<% if current_user.id == @tribe.owner_id %>
+you the owner
+
+<%= link_to "Delete", @tribe, method: :delete,
+							confirm: "You sure?", 
+							title: @tribe.name %>
+							
+	<% if @tribe.members.count < 2 %>
+	
+	<div class="hero-unit" style="text-align:center">
+	  <p style="text-align:center; font-size:25px">Your tribe looks lonely, invite some people to join!</p>
+
+	</div>
+	
+	<% else %>
+	<% end %>
+
+<% else %>
+<% end %>
+
