@@ -150,7 +150,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
             <td class="w30" width="30"></td>
             <td class="w580" width="580">
                 <div align="center" id="headline">
-                        <p align="middle" class="article-title" style="color: #444444; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; font-size: 40px; text-align: center; margin-top:0px; margin-bottom:30px;"><singleline label="Title">Howdy <%= @resource.first_name %>!</singleline></p>
+                        <p align="middle" class="article-title" style="color: #444444; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; font-size: 40px; text-align: center; margin-top:0px; margin-bottom:30px;"><singleline label="Title">Howdy <% if @resource.first_name.empty? %><%= @resource.email %><% else %><%= @resource.first_name %><% end %>!</singleline></p>
                 </div>
             </td>
             <td class="w30" width="30"></td>
