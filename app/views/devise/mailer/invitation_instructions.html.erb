@@ -74,22 +74,22 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
 .article-title { font-size: 18px; line-height:24px; color: #b0b0b0; font-weight:bold; margin-top:0px; margin-bottom:18px; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; }
 .article-title a { color: #b0b0b0; text-decoration: none; }
 .article-title.with-meta {margin-bottom: 0;}
-.article-meta { font-size: 13px; line-height: 20px; color: #ccc; font-weight: bold; margin-top: 0;}
-.article-content { font-size: 13px; line-height: 18px; color: #444444; margin-top: 0px; margin-bottom: 18px; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; }
+.article-meta { font-size: 18px; line-height: 20px; color: #ccc; font-weight: bold; margin-top: 0;}
+.article-content { font-size: 18px; line-height: 20px; color: #444444; margin-top: 0px; margin-bottom: 18px; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; }
 .article-content a { color: #2f82de; font-weight:bold; text-decoration:none; }
 .article-content img { max-width: 100% }
 .article-content ol, .article-content ul { margin-top:0px; margin-bottom:18px; margin-left:19px; padding:0; }
 .article-content li { font-size: 13px; line-height: 18px; color: #444444; }
 .article-content li a { color: #2f82de; text-decoration:underline; }
 .article-content p {margin-bottom: 15px;}
-.footer-content-left { font-size: 12px; line-height: 15px; color: #ededed; margin-top: 0px; margin-bottom: 15px; }
+.footer-content-left { font-size: 16px; line-height: 15px; color: #ededed; margin-top: 0px; margin-bottom: 15px; }
 .footer-content-left a { color: #ffffff; font-weight: bold; text-decoration: none; }
-.footer-content-right { font-size: 11px; line-height: 16px; color: #ededed; margin-top: 0px; margin-bottom: 15px; }
+.footer-content-right { font-size: 16px; line-height: 16px; color: #ededed; margin-top: 0px; margin-bottom: 15px; }
 .footer-content-right a { color: #ffffff; font-weight: bold; text-decoration: none; }
 #footer { background-color: #c7c7c7; color: #ededed; }
 #footer a { color: #ffffff; text-decoration: none; font-weight: bold; }
 #permission-reminder { white-space: normal; }
-#street-address { color: #b0b0b0; white-space: normal; }
+#street-address { color: #444444; white-space: normal; }
 </style>
 <!--[if gte mso 9]>
 <style _tmplitem="509" >
@@ -151,7 +151,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
             <td class="w580" width="580">
                 <div align="center" id="headline">
                     <p>
-                        <strong><a href="http://sali.sh"><singleline label="Title">Howdy <%= @resource.email %>!</singleline></a></strong>
+                        <strong><a href="<%= accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %>"><singleline label="Title">Howdy <%= @resource.email %>!</singleline></a></strong>
                     </p>
                 </div>
             </td>
@@ -163,7 +163,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
 </td>
                 </tr>
                 
-                <tr><td class="w640" width="640" height="30" bgcolor="#ffffff"></td></tr>
+                
                 <tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff">
     <table class="w640" width="640" cellpadding="0" cellspacing="0" border="0">
         <tbody><tr>
@@ -175,10 +175,10 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
                         <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
                             <tbody><tr>
                                 <td class="w580" width="580">
-                                    <p align="left" class="article-title"><singleline label="Title">Add a title</singleline></p>
                                     <div align="left" class="article-content">
-                                        <multiline label="Description">We are please to inform you that <%= @resource.invite_source_name %> has invited you to join their tribe on <%= link_to "Sali.sh", accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %>.</multiline>
+                                        <multiline label="Description">Great news, BLANK has invited you to join their tribe on <%= link_to "Sali.sh", accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %>, you can accept this invitation through the link below.</multiline>
                                     </div>
+accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)
                                 </td>
                             </tr>
                             <tr><td class="w580" width="580" height="10"></td></tr>
@@ -189,63 +189,50 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
                     <layout label="Text with full-width image">
                         <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
                             <tbody><tr>
-                                <td class="w580" width="580">
-                                    <p align="left" class="article-title"><singleline label="Title">Add a title</singleline></p>
-                                </td>
                             </tr>
                             <tr>
-                                <td class="w580" width="580"><img editable="true" label="Image" class="w580" width="580" border="0"><img src="http://localhost:3000/assets/tribe.jpg" alt="Sali.sh"></td>
+                                <td class="w580" width="580"><img editable="true" label="Image" class="w580" width="580" border="0"><img src="https://sali.sh/assets/tribe.jpg" alt="Sali.sh"></td>
                             </tr>
-                            <tr><td class="w580" width="580" height="15"><img src="http://localhost:3000/assets/tribe.jpg" alt="Sali.sh"></td></tr>
-                            <tr>
-                                <td class="w580" width="580">
-                                    <div align="left" class="article-content">
-                                        <multiline label="Description">If you don't want to accept the invitation, please ignore this email.<br />
-										Your account won't be created until you access the link above and set your password.</multiline>
-                                    </div>
-                                </td>
-                            </tr>
+                            <tr><td class="w580" width="580" height="15"></td></tr>
                             <tr><td class="w580" width="580" height="10"></td></tr>
                         </tbody></table>
                     </layout>
-                                        
-                    
-                    <layout label="Text with right-aligned image">
-                        <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
-                            <tbody><tr>
-                                <td class="w580" width="580">
-                                    <p align="left" class="article-title"><singleline label="Title">Add a title</singleline></p>
-                                    <table cellpadding="0" cellspacing="0" border="0" align="right">
-                                        <tbody><tr>
-                                            <td class="w30" width="15"></td>
-                                            <td><img editable="true" label="Image" class="w300" width="300" border="0"></td>
-                                        </tr>
-                                        <tr><td class="w30" width="15" height="5"></td><td></td></tr>
-                                    </tbody></table>
-                                    <div align="left" class="article-content">
-                                        <multiline label="Description">Enter your description</multiline>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr><td class="w580" width="580" height="10"></td></tr>
-                        </tbody></table>
-                    </layout>
-                                        
-                    
+
                     <layout label="Text with left-aligned image">
                         <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
                             <tbody><tr>
                                 <td class="w580" width="580">
-                                    <p align="left" class="article-title"><singleline label="Title">Add a title</singleline></p>
+                                    <p align="middle" class="article-title" style="font-size:26px"><singleline label="Title">A Social Network that won't waste your time</singleline></p>
                                     <table cellpadding="0" cellspacing="0" border="0" align="left">
                                         <tbody><tr>
-                                            <td><img editable="true" label="Image" class="w300" width="300" border="0"></td>
+                                            <td><img editable="true" label="Image" class="w300" width="300" border="0"><img src="https://sali.sh/assets/fire.jpg" alt="Sali.sh"></td>
                                             <td class="w30" width="15"></td>
                                         </tr>
                                         <tr><td></td><td class="w30" width="15" height="5"></td></tr>
                                     </tbody></table>
                                     <div align="left" class="article-content">
-                                        <multiline label="Description">Enter your description</multiline>
+										<table cellpadding="2" cellspacing="2" border="0"> 
+										    <tr>
+										        <td valign="top">&bull;</td>
+										        <td>Join a tribe or start your own.</td>
+										    </tr>
+										    <tr>
+										        <td valign="top">&bull;</td>
+										        <td>Post through out the week (as little or as much as you want).</td>
+										    </tr>
+										    <tr>
+										        <td valign="top">&bull;</td>
+										        <td>Pick your favorite post to share at the weekly circle. You can only share once every week, so make it count!</td>
+										    </tr>
+										    <tr>
+										        <td valign="top">&bull;</td>
+										        <td>Salish will email you a private link to your tribes’ weekly circle.</td>
+										    </tr>
+										    <tr>
+										        <td valign="top">&bull;</td>
+										        <td>Interact at the circle with comments and markup.</td>
+										    </tr>
+										</table>
                                     </div>
                                 </td>
                             </tr>
@@ -253,99 +240,26 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
                         </tbody></table>
                     </layout>
                                                                                 
-                    
-                    <layout label="Two columns">
+                    <layout label="Text only">
                         <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
                             <tbody><tr>
-                                <td class="w275" width="275" valign="top">
-                                    <table class="w275" width="275" cellpadding="0" cellspacing="0" border="0">
-                                        <tbody><tr>
-                                            <td class="w275" width="275">
-                                                <p align="left" class="article-title"><singleline label="Title">Add a title</singleline></p>
-                                                <div align="left" class="article-content">
-                                                    <multiline label="Description">Enter your description</multiline>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr><td class="w275" width="275" height="10"></td></tr>
-                                    </tbody></table>
-                                </td>
-                                <td class="w30" width="30"></td>
-                                <td class="w275" width="275" valign="top">
-                                    <table class="w275" width="275" cellpadding="0" cellspacing="0" border="0">
-                                        <tbody><tr>
-                                            <td class="w275" width="275">
-                                                <p align="left" class="article-title"><singleline label="Title">Add a title</singleline></p>
-                                                <div align="left" class="article-content">
-                                                    <multiline label="Description">Enter your description</multiline>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr><td class="w275" width="275" height="10"></td></tr>
-                                    </tbody></table>
+                                <td class="w580" width="580">
+                                    <p align="left" class="article-title"><singleline label="Title">Not to worry</singleline></p>
+                                    <div align="left" class="article-content">
+                                        <multiline label="Description">In the sad event that you don't want to accept BLANKS invitation, please just ignore this email.  Your account won't be created until you access the link above and set your password.</br></br>
+	with love,</br> Salish</multiline>
+                                    </div>
                                 </td>
                             </tr>
+                            <tr><td class="w580" width="580" height="10"></td></tr>
                         </tbody></table>
                     </layout>
+
+
                                         
                                         
-                    
-                    <layout label="Image gallery">
-                        <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
-                            <tbody><tr>
-                                <td class="w180" width="180" valign="top">
-                                    <table class="w180" width="180" cellpadding="0" cellspacing="0" border="0">
-                                        <tbody><tr>
-                                            <td class="w180" width="180"><img editable="true" label="Image" class="w180" width="180" border="0"></td>
-                                        </tr>
-                                        <tr><td class="w180" width="180" height="10"></td></tr>
-                                        <tr>
-                                            <td class="w180" width="180">
-                                                <div align="left" class="article-content">
-                                                    <multiline label="Description">Enter your description</multiline>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr><td class="w180" width="180" height="10"></td></tr>
-                                    </tbody></table>
-                                </td>
-                                <td width="20"></td>
-                                <td class="w180" width="180" valign="top">
-                                    <table class="w180" width="180" cellpadding="0" cellspacing="0" border="0">
-                                        <tbody><tr>
-                                            <td class="w180" width="180"><img editable="true" label="Image" class="w180" width="180" border="0"></td>
-                                        </tr>
-                                        <tr><td class="w180" width="180" height="10"></td></tr>
-                                        <tr>
-                                            <td class="w180" width="180">
-                                                <div align="left" class="article-content">
-                                                    <multiline label="Description">Enter your description</multiline>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr><td class="w180" width="180" height="10"></td></tr>
-                                    </tbody></table>
-                                </td>
-                                <td width="20"></td>
-                                <td class="w180" width="180" valign="top">
-                                    <table class="w180" width="180" cellpadding="0" cellspacing="0" border="0">
-                                        <tbody><tr>
-                                            <td class="w180" width="180"><img editable="true" label="Image" class="w180" width="180" border="0"></td>
-                                        </tr>
-                                        <tr><td class="w180" width="180" height="10"></td></tr>
-                                        <tr>
-                                            <td class="w180" width="180">
-                                                <div align="left" class="article-content">
-                                                    <multiline label="Description">Enter your description</multiline>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr><td class="w180" width="180" height="10"></td></tr>
-                                    </tbody></table>
-                                </td>
-                            </tr>
-                        </tbody></table>
-                    </layout>
+                 
+
                 </repeater>
             </td>
             <td class="w30" width="30"></td>
@@ -361,12 +275,11 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
         <tr>
             <td class="w30" width="30"></td>
             <td class="w580" width="360" valign="top">
-            <span class="hide"><p id="permission-reminder" align="left" class="footer-content-left"><span>Sali.sh</span></p></span>
-            <p align="left" class="footer-content-left"><preferences lang="en">Edit your subscription</preferences> | <unsubscribe>Unsubscribe</unsubscribe></p>
+            <span class="hide"><p id="permission-reminder" align="left" class="footer-content-left"><span><%= link_to "Sali.sh", "https://sali.sh" %></span></p></span>
             </td>
             <td class="hide w0" width="60"></td>
             <td class="hide w0" width="160" valign="top">
-            <p id="street-address" align="right" class="footer-content-right"><span>Seattle WA</span></p>
+            <p id="street-address" align="right" class="footer-content-right"><span>Seattle, WA</span></p>
             </td>
             <td class="w30" width="30"></td>
         </tr>
