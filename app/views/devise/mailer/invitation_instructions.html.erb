@@ -1,6 +1,6 @@
 <p>Hello <%= @resource.email %>!</p>
 
-<p>Someone has invited you to <%= root_url %>, you can accept it through the link below.</p>
+<p> <%= image_tag current_user.image_url(:tiny).to_s if current_user.image? %> <%= current_user.first_name %> has invited you to Sali.sh, you can accept it through the link below.</p>
 
 <p><%= accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %><%= @resource.tribe_invite %></p>
 
