@@ -13,7 +13,7 @@ gem "rmagick"
 gem 'fog'
 
 gem 'devise'
-gem "devise-async"
+# gem "devise-async"
 gem "devise_invitable"
 
 gem "unicorn"

@@ -72,8 +72,8 @@ Salish::Application.configure do
     config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => 'spierp@gmail.com',
-    :password             => 'ca42dzQ3po809',
+    :user_name            => 'salish.mailer@gmail.com',
+    :password             => 's@lishMailer',
     :authentication       => 'plain',
     :enable_starttls_auto => true }
     
