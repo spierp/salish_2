@@ -150,7 +150,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
             <td class="w30" width="30"></td>
             <td class="w580" width="580">
                 <div align="center" id="headline">
-                        <p align="middle" class="article-title" style="color: #444444; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; font-size: 40px; text-align: center; margin-top:0px; margin-bottom:30px;"><singleline label="Title">Howdy <% if @resource.first_name.empty? %><%= @resource.email %><% else %><%= @resource.first_name %><% end %>!</singleline></p>
+                        <p align="middle" class="article-title" style="color: #444444; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; font-size: 40px; line-height:44px; text-align: center; margin-top:0px; margin-bottom:30px;"><singleline label="Title">Howdy <% if @resource.first_name.empty? %><%= @resource.email %><% else %><%= @resource.first_name %><% end %>!</singleline></p>
                 </div>
             </td>
             <td class="w30" width="30"></td>
@@ -187,7 +187,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
                         <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
                             <tbody><tr>
 								<td class="w580" width="580">
-                                    <p align="middle" class="article-title"><singleline label="Title">A Social network that won't waste your time.</singleline></p>
+                                    <p align="middle" class="article-title" style="font-size: 24px; line-height:26px; color: #b0b0b0; font-weight:bold; margin-top:0px; margin-bottom:18px; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif;"><singleline label="Title">A Social network that won't waste your time.</singleline></p>
                                 </td>
                             </tr>
                             <tr>
@@ -240,7 +240,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
                                 <td class="w580" width="580">
                                     
                                     <div align="left" class="article-content">
-										<p align="middle" class="article-title"><singleline label="Title">You can accept this invitation through the link below.</singleline></p>
+										<p align="middle" class="article-title" style="font-size: 34px; line-height:36px; color: #c09062; font-weight:bold; margin-top:0px; margin-bottom:18px; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif;"><singleline label="Title"><%= link_to "ACCEPT INVITATION", accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)%> </singleline></p>
                                     </div>
 									<%= accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %>
                                 </td>
@@ -262,7 +262,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
                                         <tr><td></td><td class="w30" width="15" height="5"></td></tr>
                                     </tbody></table>
                                     <div align="left" class="article-content" style="font-size: 16px; line-height: 20px; color: #444444; margin-top: 0px; margin-bottom: 18px; font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif;">
-										<p>In the sad event that you don't want to accept BLANKS invitation, please just ignore this email.  Your account won't be created until you access the link above and set your password.</br></br>
+										<p>In the sad event that you don't want to accept <%= @resource.invited_by.combined_name %>'s invitation, please just ignore this email.  Your account won't be created until you access the link above and set your password.</br></br>
 	with love,</br> Salish</p>
                                     </div>
                                 </td>
@@ -285,7 +285,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
         <tbody>
         <tr>
             <td class="w580" width="360" valign="top">
-            <p id="permission-reminder" align="left" class="footer-content-left" style="font-size: 16px; line-height: 15px; color: #444444; margin-top: 10px; margin-bottom: 10px; margin-left:15px"><span>From <%= link_to "Sali.sh", "https://sali.sh" %> in Seattle, WA</span></p>
+            <p id="permission-reminder" align="left" class="footer-content-left" style="font-size: 16px; line-height: 15px; color: #444444; margin-top: 10px; margin-bottom: 10px; margin-left:15px"><span>Sent with love from Seattle, WA</span></p>
             </td>
             <td class="hide w0" width="160" valign="top">
             </td>

@@ -1,14 +1,19 @@
-<% provide(:title, 'All Users')%>
-<h2>Your Tribes</h2>
+<% provide(:title, 'My Tribes')%>
 
+<% if current_user.memberships.empty? %>
+<div class="hero-unit" style="text-align:center">
+  <p style="text-align:center; font-size:25px">Sure is lonely around here...</p>
+	<p><%= button_to "Start a tribe!", new_tribe_path, class: "btn btn-primary btn-large", :method => "get" %></p>
+</div>
+
+<% else %>
+
+<h2>My Tribes</h2>
 <div class="container well">
 	<div class="row">	
-		<h2 style="text-align:center; margin-bottom:10px">Photos</h2>
 		<ul class="thumbnails" id="photos">
 			<%= render @tribes %>
 		</ul>
 	</div>
 </div>
-
-
-<h2><%= link_to "Start a new tribe", new_tribe_path %></h2>
+<% end %>

@@ -1,15 +1,15 @@
 require 'sidekiq/web' 
 
 Salish::Application.routes.draw do
-  
-  devise_for :users
+ 
+  devise_for :users, :controllers => { :invitations => 'invitations' }  
   resources :users
   resources :tribes do
       get 'join', :on => :member
     end
   resources :memberships
   
-  root to: 'static_pages#home'
+  root to: 'tribes#index'
   
   match '/about', to: 'static_pages#about'
   match '/users/:id', :to => 'users#destroy', :as => :destroy_user, :via => :delete
