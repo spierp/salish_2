@@ -3,6 +3,7 @@ class InvitationsController < Devise::InvitationsController
     def new
       build_resource
       1.times { resource.memberships.build }
+      @tribes = current_user.tribes.order_by('name ASC').collect {|x| [x.name, x.id] }
       render :new
     end
 end
