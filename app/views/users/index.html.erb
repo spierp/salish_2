@@ -28,8 +28,21 @@
 				</button>
 
 				<div id="<%= user.id %>" class="collapse">
+						<% for tribe in user.tribes %>
+						<%= tribe.name %><br>
+						<% end %>
+						<% membership = user.memberships.build %>
+						<%= form_for user do |f| %>
+						  <%= render 'shared/error_messages', object: user %>
 					
-					yeah dawg this is great
+							<%= f.fields_for :memberships do |builder| %>
+								<%= render "shared/membership_fields", :f => builder %>
+							<% end %>
+
+
+							<%= f.submit "Invite", class: "btn btn-large btn-primary"%>
+
+						<% end %>
 					
 					</div>
 				

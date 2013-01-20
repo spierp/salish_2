@@ -4,12 +4,12 @@ before_filter :authenticate_user!
   def new
     @membership = Membership.new
   end
-
+  
 
   def create
-    @membership = current_user.memberships.build(params[:membership])
+    @membership = Membership.create(params[:membership])
     if @membership.save
-      flash[:notice] = "You have joined this group."
+      flash[:notice] = "Membership saved."
       redirect_to :back
     else
       flash[:error] = "Unable to join."
