@@ -1,5 +1,5 @@
-<% provide(:title, 'All Users')%>
-<h2>All Users</h2>
+<% provide(:title, 'Invite Users')%>
+<h2>Invite someone to join your tribe</h2>
 
 <table class="table table-striped" id="users">
 	<thead>	
@@ -21,14 +21,32 @@
 			<% end %></td>
 			<td><%= user.confirmed_at.strftime("%m/%d/%Y") %></td>
 			<td>
+				
+
+				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%= user.id %>">
+				  Invite
+				</button>
+
+				<div id="<%= user.id %>" class="collapse">
+					
+					yeah dawg this is great
+					
+					</div>
+				
+				
+
+				
 			</td>	
 		</tr>	
 		<% end %>
 		<% end %>
 	</tbody>
 </table>	
-
-
+<hr>
+<div class="well" style="text-align:center">
+<h2>Don't see who you are looking for?</h2>
+<p><%= button_to "Invite someone to join Sali.sh", 'users/invitation/new', class: "btn btn-primary btn-large", :method => "get" %></p>
+</div>
 
 <%# if current_user.admin? %>
 <%#= link_to "Remove from tribe", tribe.kick(user), method: :delete, confirm: "You sure?" %>
@@ -40,7 +58,7 @@ $(document).ready(function() {
 		"sPaginationType": "bootstrap",	
 		"bLengthChange": false,					
 		"iDisplayLength": 10,
-		"aaSorting": [[ 1, "desc" ]],					
+		"aaSorting": [[ 0, "asc" ]],					
 		"aoColumns": [
 	                null,																																
 					{ "sType": "datetime-us" },																	

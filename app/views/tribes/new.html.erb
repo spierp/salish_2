@@ -11,8 +11,41 @@
 			  	<%= f.label :image, "Tribe Profile" %>
 			  	<%= f.file_field :image %>
 			
-				<%= f.submit "Start Tribe", class: "btn btn-large btn-primary"%>
-	
+				<div id="loading">
+				    <div id="loadingcontent">
+				        <p id="loadingspinner">
+				            Creating Tribe...
+				        </p>
+				    </div>
+				</div>
+			
+				<%= f.submit "Start Tribe", class: "btn btn-large btn-primary", :id => "submitbtn" %>
+				
+
+				
 			<% end %>
 
 </div>
+
+<script type="text/javascript" 
+        src="@Url.Content("~/Scripts/spin.min.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#submitbtn").click(function () {
+            $("#loading").fadeIn();
+            var opts = {
+                lines: 15, // The number of lines to draw
+                length: 27, // The length of each line
+                width: 5, // The line thickness
+                radius: 20, // The radius of the inner circle
+                color: '#000', // #rgb or #rrggbb
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false // Whether to use hardware acceleration
+            };
+            var target = document.getElementById('loading');
+            var spinner = new Spinner(opts).spin(target);
+        });
+    });
+</script>
