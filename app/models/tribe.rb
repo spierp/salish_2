@@ -10,4 +10,5 @@ class Tribe < ActiveRecord::Base
   
   scope :order_by, lambda { |o| {:order => o} }  
   
+  
 end

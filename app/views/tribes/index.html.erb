@@ -5,15 +5,66 @@
   <p style="text-align:center; font-size:25px">Sure is lonely around here...</p>
 	<p><%= button_to "Start a tribe!", new_tribe_path, class: "btn btn-primary btn-large", :method => "get" %></p>
 </div>
-
 <% else %>
-
-<h2>My Tribes</h2>
+<% end %>
+<h2>Tribes</h2>
+<% for tribe in current_user.tribes %>
 <div class="container well">
 	<div class="row">	
-		<ul class="thumbnails" id="photos">
-			<%= render @tribes %>
-		</ul>
-	</div>
+			<div class="span5">
+				<h2><%= link_to tribe.name, tribe %></h2>
+				<% if tribe.image? %>
+				<%= link_to image_tag(tribe.image_url(:large).to_s, :class => "thumbnail" ), tribe %>
+				<% else %>
+				<% end %>	
+			</div>
+			<div class="span7">
+				<row><h3>Chief:</h3> 
+					<% if tribe.owner.image? %>
+					<row><%= image_tag tribe.owner.image_url(:tiny).to_s %> <%= tribe.owner.combined_name %> </row>
+					<% else %>
+					<row><%= image_tag '/assets/blank_user.png' %> <%= tribe.owner.combined_name %> </row>
+					<% end %>
+					</row>
+				<hr>
+				<table class="table table-striped" id="members">
+					<thead>
+						<tr>
+						<th>Tribe Members</th>
+						</tr>
+					</thead>
+					<tr>
+						<td>
+							<% for user in tribe.users %>
+								<% for membership in user.memberships %>
+									<% if membership.status == "approved" && membership.tribe_id == tribe.id && membership.user_id != tribe.owner_id %>
+										<% if user.image? %>
+										<row><%= image_tag user.image_url(:tiny).to_s %> <%= user.combined_name %> </row>
+										<% else %>
+										<row><%= image_tag '/assets/blank_user.png' %> <%= user.combined_name %> </row>
+										<% end %>
+						</td>
+					</tr>	
+						<tr>
+							<td>
+							<% elsif membership.status == "pending" && membership.tribe_id == tribe.id %>	
+								<% if user.image? %>
+								<row style="color:lightgray"><%= image_tag user.image_url(:tiny).to_s %> <%= user.combined_name %> Pending</row>
+								<% else %>
+								<row style="color:lightgray"><%= image_tag '/assets/blank_user.png' %><i> <%= user.combined_name %> (Pending)</i></row>
+								<% end %>
+							</td>	
+						</tr>
+								<% else %>	
+								<% end %>
+							<% end %>
+						<% end %>		
+					</tr>
+				</table>			
+			</div>
+	
+	</div>		
 </div>
 <% end %>
+
+

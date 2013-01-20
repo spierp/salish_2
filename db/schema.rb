@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023223600) do
+ActiveRecord::Schema.define(:version => 20130119182900) do
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "tribe_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.integer  "invited_by"
+    t.string   "status",     :default => "approved"
   end
 
   create_table "tribes", :force => true do |t|

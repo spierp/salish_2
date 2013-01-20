@@ -1,5 +1,10 @@
-<li>
-<%= image_tag user.image_url(:tiny).to_s if user.image? %> <%= user.first_name %> <%= user.last_name %> 
+<li style="padding:5px; margin-right:25px">
+	
+	<% if user.image? %>
+	<row><%= image_tag user.image_url(:tiny).to_s %> <%= user.combined_name %> </row>
+	<% else %>
+	<row><%= image_tag '/assets/blank_user.png' %> <%= user.combined_name %> </row>
+	<% end %>
 <% if current_user.admin? %>
 <%#= link_to "Remove from tribe", tribe.kick(user), method: :delete, confirm: "You sure?" %>
 <% else %>

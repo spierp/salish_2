@@ -4,7 +4,11 @@
 			<%= link_to image_tag("salish.png"), root_path, id: "logo"%>
 						<% if signed_in? %>						
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<% if current_user.image? %>
 					<%= image_tag current_user.image_url(:tiny).to_s %>
+					<% else %>
+					<%= image_tag '/assets/blank_user.png'%>
+					<% end %>
 				</a>							
 				<div class="nav-collapse">
 					
@@ -28,7 +32,11 @@
 							<li class="divider-vertical"></li>
 							<li id="fat-menu" class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<% if current_user.image? %>
 									<row><%= image_tag current_user.image_url(:tiny).to_s %> <%= current_user.first_name %> </row>
+									<% else %>
+									<row><%= image_tag '/assets/blank_user.png' %> <%= current_user.first_name %> </row>
+									<% end %>
 									<b class="caret"></b>	
 								</a>
 								<ul class="dropdown-menu">

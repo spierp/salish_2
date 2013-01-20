@@ -44,6 +44,20 @@ class TribesController < ApplicationController
           render 'new'
       end
     end
+    
+  def edit
+      @tribe = Tribe.find(params[:id])
+  end
+
+  def update
+    @tribe = Tribe.find(params[:id])
+    if @tribe.update_attributes(params[:tribe])
+      flash[:success] = "Tribe Updated"
+      redirect_to @tribe
+    else  
+      render 'edit'
+    end  
+  end
 
 
   def destroy
