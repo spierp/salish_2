@@ -14,5 +14,9 @@
 				<%= f.submit "Update Tribe", class: "btn btn-large btn-primary"%>
 	
 			<% end %>
+			
+			<%= link_to "Delete", @tribe, method: :delete,
+										confirm: "Are you sure you want to delete this bid and all associated files?", 
+										title: @tribe.name %>
 
 </div>
