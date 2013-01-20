@@ -1,10 +1,51 @@
 <% provide(:title, 'All Users')%>
 <h2>All Users</h2>
 
-<%= will_paginate %>
+<table class="table table-striped" id="users">
+	<thead>	
+	  <tr>
+		<th>Name</th>
+	    <th>Joined</th>		
+	    <th>Invite</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% for user in @users %>
+		<% if user.confirmed_at.blank? %>
+		<% else %>
+		<tr>
+			<td><% if user.image? %>
+			<row><%= image_tag user.image_url(:tiny).to_s %> <%= user.combined_name %> </row>
+			<% else %>
+			<row><%= image_tag '/assets/blank_user.png' %> <%= user.combined_name %> </row>
+			<% end %></td>
+			<td><%= user.confirmed_at.strftime("%m/%d/%Y") %></td>
+			<td>
+			</td>	
+		</tr>	
+		<% end %>
+		<% end %>
+	</tbody>
+</table>	
 
-<ul class="users">
-	<%= render @users %>
-</ul>
 
-<%= will_paginate %>
+
+<%# if current_user.admin? %>
+<%#= link_to "Remove from tribe", tribe.kick(user), method: :delete, confirm: "You sure?" %>
+
+<script type="text/javascript">		
+$(document).ready(function() {
+   var oTable = $('#users').dataTable( {
+	    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sPaginationType": "bootstrap",	
+		"bLengthChange": false,					
+		"iDisplayLength": 10,
+		"aaSorting": [[ 1, "desc" ]],					
+		"aoColumns": [
+	                null,																																
+					{ "sType": "datetime-us" },																	
+					null
+	            ]
+        } );
+    } );
+</script>

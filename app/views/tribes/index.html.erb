@@ -26,7 +26,8 @@
 					<row><%= image_tag '/assets/blank_user.png' %> <%= tribe.owner.combined_name %> </row>
 					<% end %>
 					</row>
-				<hr>
+				<hr>	
+					<% if tribe.users.count > 1 %>
 				<table class="table table-striped" id="members">
 					<thead>
 						<tr>
@@ -60,7 +61,13 @@
 							<% end %>
 						<% end %>		
 					</tr>
-				</table>			
+				</table>
+				<% else %>
+				<div class="hero-unit" style="text-align:center">
+				  <p style="text-align:center; font-size:25px">Your tribe looks lonely, invite some people to join!</p>
+
+				</div>
+				<% end %>			
 			</div>
 	
 	</div>		

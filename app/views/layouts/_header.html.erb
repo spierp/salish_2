@@ -18,16 +18,7 @@
 							<li><%= link_to "Invite", 'users/invitation/new' %></li>
 							<li class="divider-vertical"></li>
 							
-							<li id="fat-menu" class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<row>Tribes</row>
-									<b class="caret"></b>	
-								</a>
-								<ul class="dropdown-menu">
-									<li><%= link_to '<i class="icon-pencil"></i> New Tribe'.html_safe, new_tribe_path %></li>
-									<li><%= link_to '<i class="icon-th-large"></i> Show Tribes'.html_safe, tribes_path %></li>																																													
-								</ul>
-								<li>
+							<li><%= link_to "Tribes", tribes_path %></li>
 									
 							<li class="divider-vertical"></li>
 							<li id="fat-menu" class="dropdown">
