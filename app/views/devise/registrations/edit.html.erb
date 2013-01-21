@@ -5,6 +5,12 @@
 
 	  <div><%= f.label :email %><br />
 	  <%= f.email_field :email %></div>
+	
+	  <div><%= f.label :admin %><br />
+	  <%= f.text_field :admin %></div>
+	
+	  <div><%= f.label :invitation_limit %><br />
+	  <%= f.text_field :invitation_limit %></div>
 
 	  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
 	  <%= f.password_field :password, :autocomplete => "off" %></div>

@@ -15,12 +15,12 @@
 		<% for membership in @memberships %>
 		<tr>
 			<td><%= membership.id %></td>
-			<td><row><%#= image_tag membership.tribe.image_url(:tiny).to_s if membership.tribe.image? %> <%#= membership.tribe.name %></td>
-			<td><%# if membership.user.image? %>
-				<row><%#= image_tag membership.user.image_url(:tiny).to_s %> <%#= membership.user.combined_name %> </row>
-				<%# else %>
-				<row><%#= image_tag '/assets/blank_user.png' %> <%#= membership.user.combined_name %> </row>
-				<%# end %>
+			<td><row><%= image_tag membership.tribe.image_url(:tiny).to_s if membership.tribe.image? %> <%= membership.tribe.name %></td>
+			<td><% if membership.user.image? %>
+				<row><%= image_tag membership.user.image_url(:tiny).to_s %> <%= membership.user.combined_name %> </row>
+				<% else %>
+				<row><%= image_tag '/assets/blank_user.png' %> <%= membership.user.combined_name %> </row>
+				<% end %>
 			</td>
 			<td><%= membership.status %></td>
 			<td><%= membership.created_at.strftime("%m/%d/%Y") %></td>

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 #  include Devise::Async::Model
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :image, :tribe_invite, :memberships_attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :image, :tribe_invite, :memberships_attributes, :admin, :invitation_limit
   
   scope :order_by, lambda { |o| {:order => o} }  
 
