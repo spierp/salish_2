@@ -9,6 +9,7 @@ class Membership < ActiveRecord::Base
   validates_uniqueness_of :tribeuser 
   
   
+  
   private
     def set_tribeuser
       self.tribeuser = "#{self.user_id}_#{self.tribe_id}"

@@ -69,7 +69,7 @@
 				<% else %>
 				<div class="hero-unit" style="text-align:center">
 				  <p style="text-align:center; font-size:25px">Your tribe looks lonely, invite some people to join!</p>
-
+					<%= button_to "Invite someone to join #{tribe.name}", users_path, class: "btn btn-primary btn-large", :method => "get" %>
 				</div>
 				<% end %>			
 			</div>

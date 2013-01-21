@@ -5,22 +5,40 @@ before_filter :authenticate_user!
     @membership = Membership.new
   end
   
+  def index
+    if current_user.admin?
+      @memberships = Membership.all
+    else 
+      redirect_to root_path
+    end  
+  end  
+  
 
   def create
     @membership = Membership.create(params[:membership])
+    @tribe = @membership.tribe
+    if current_user.id == @tribe.owner_id
+      @membership.status = "approved"
+    else
+      @membership.status = "pending"  
+    end  
     if @membership.save
-      flash[:notice] = "Membership saved."
+      if @membership.status == "approved"
+        flash[:notice] = "Membership saved."
+      else @membership.status == "pending"
+        flash[:notice] = "Invitation sent.  Please ask your cheif to welcome this new member to the tribe." 
+      end     
       redirect_to :back
     else
-      flash[:error] = "Unable to join."
+      flash[:error] = "Unable to invite.  Maybe this user is already a member of your tribe?"
       redirect_to :back
     end
   end
 
   def destroy
-    @membership = user.memberships.find(params[:id]).destroy
-    flash[:notice] = "Removed membership."
-    redirect_to root_path
+    @membership = Membership.find(params[:id]).destroy
+    flash[:notice] = "Membership removed."
+    redirect_to memberships_path
   end
   
 end

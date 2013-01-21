@@ -34,7 +34,7 @@
 							<%= f.label :tribe_id, "Tribe" %>
 							<%= f.select :tribe_id, @tribes %>
 							<%= f.hidden_field :user_id, :value => user.id %>
-							<%= f.hidden_field :status, :value => "pending" %>
+
 							<%= f.hidden_field :invited_by, :value => current_user.id %>								
 
 							<div id="loading">

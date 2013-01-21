@@ -1,0 +1,52 @@
+<h2>All Memberships</h2>
+<table class="table table-striped" id="memberships">
+	<thead>	
+	  <tr>
+		<th>id</th>
+	    <th>Tribe</th>		
+	    <th>User</th>
+	    <th>Status</th>		
+	    <th>Created at</th>	
+	    <th>Invited by</th>	
+	    <th>Delete</th>				
+	  </tr>
+	</thead>
+	<tbody>
+		<% for membership in @memberships %>
+		<tr>
+			<td><%= membership.id %></td>
+			<td><row><%= image_tag membership.tribe.image_url(:tiny).to_s if membership.tribe.image? %> <%= membership.tribe.name %></td>
+			<td><% if membership.user.image? %>
+				<row><%= image_tag membership.user.image_url(:tiny).to_s %> <%= membership.user.combined_name %> </row>
+				<% else %>
+				<row><%= image_tag '/assets/blank_user.png' %> <%= membership.user.combined_name %> </row>
+				<% end %>
+			</td>
+			<td><%= membership.status %></td>
+			<td><%= membership.created_at.strftime("%m/%d/%Y") %></td>
+			<td><%= membership.invited_by %></td>			
+			<td><%= link_to "Delete", membership, method: :delete, confirm: "You sure?" %></td>	
+		</tr>	
+		<% end %>
+	</tbody>
+</table>
+
+<script type="text/javascript">		
+$(document).ready(function() {
+   var oTable = $('#memberships').dataTable( {
+	    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sPaginationType": "bootstrap",					
+		"iDisplayLength": 50,
+		"aaSorting": [[ 0, "asc" ]],					
+		"aoColumns": [
+	                null,
+	                null,	
+	                null,	
+	                null,																																				
+					{ "sType": "datetime-us" },	
+	                null,																						
+					null
+	            ]
+        } );
+    } );
+</script>
