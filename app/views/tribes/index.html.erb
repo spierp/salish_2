@@ -6,76 +6,109 @@
 	<p><%= button_to "Start a tribe!", new_tribe_path, class: "btn btn-primary btn-large", :method => "get" %></p>
 </div>
 <% else %>
-<% end %>
+
 <h2>Tribes</h2>
 <% for tribe in current_user.tribes %>
 <div class="container well">
 	<div class="row">	
 			<div class="span5">
-				<h2><%= link_to tribe.name, tribe %></h2>
+				<h2><%= tribe.name %></h2>
 				<% if tribe.image? %>
-				<%= link_to image_tag(tribe.image_url(:large).to_s, :class => "thumbnail" ), tribe %>
+				<%= image_tag(tribe.image_url(:large).to_s, :class => "thumbnail" ) %>
 				<% else %>
 				<% end %>	
 			</div>
 			<div class="span7">
-				<row><h3>Chief:</h3> 
+				<div class="span3">
+					<row><h3>Chief:</h3> 
 					<% if tribe.owner.image? %>
-					<row><%= image_tag tribe.owner.image_url(:tiny).to_s %> <%= tribe.owner.combined_name %> </row>
+					<row><%= image_tag tribe.owner.image_url(:tiny).to_s, :class => "usericon" %> <span style="font-size:18px"><%= tribe.owner.combined_name %></span></row>
 					<% else %>
-					<row><%= image_tag '/assets/blank_user.png' %> <%= tribe.owner.combined_name %> </row>
+					<row><%= image_tag '/assets/blank_user.png' %> <span style="font-size:18px"><%= tribe.owner.combined_name %></span> </row>
+					<% end %>	
+					</div>
+				<div class="span3" style="float:right; text-align:right">
+					<% if current_user.id == tribe.owner_id %>
+					<%= button_to "Edit Tribe", "/tribes/#{tribe.id}/edit", class: "btn btn-mini", :method => "get" %></row>
+					<% else %>
 					<% end %>
-					</row>
-				<hr>	
+				</div>
+			</div>	
+			<div class="span7">			
+				<hr>
 					<% if tribe.users.count > 1 %>
 				<table class="table table-striped" id="members">
 					<thead>	
 					  <tr>
-						<th>Members</th>
+						<th>Members:</th>
 					  </tr>
 					</thead>
 						<tbody>
 						<% for user in tribe.users %>
+						<% if user.confirmed_at.blank? %>
+						<% else %>
 							<% for membership in user.memberships %>
 								<% if membership.status == "approved" && membership.tribe_id == tribe.id && membership.user_id != tribe.owner_id %>
 									<tr>
 										<td>
 											<% if user.image? %>
-											<row><%= image_tag user.image_url(:tiny).to_s %> <%= user.combined_name %> </row>
+											<row><%= image_tag user.image_url(:tiny).to_s, :class => "usericon" %> <%= user.combined_name %> </row>
 											<% else %>
 											<row><%= image_tag '/assets/blank_user.png' %> <%= user.combined_name %> </row>
 											<% end %>
 										</td>
 									</tr>
-								<% elsif membership.status == "pending" && membership.tribe_id == tribe.id %>	
-									<tr>
-											<td>
-											<% if user.image? %>
-												<row style="color:lightgray"><%= image_tag user.image_url(:tiny).to_s %><i> <%= user.combined_name %> Pending<i></row>
-											<% else %>
-												<row style="color:lightgray"><%= image_tag '/assets/blank_user.png' %><i> <%= user.combined_name %> (Pending)</i></row>
-											<% end %>
-											</td>
-									</tr>
-									<tr>				
-								<% else %>	
 								<% end %>
 									</tr>	
 							<% end %>
 						<% end %>
+						<% end %>
 					</tbody>		
 				</table>
+				<% for user in tribe.users %>
+				<% if user.confirmed_at.blank? %>
+				<% else %>
+					<% for membership in user.memberships %>
+						<% if membership.status == "pending" && membership.tribe_id == tribe.id %>
+				<table class="table table-striped" id="members">
+					<thead>	
+					  <tr>
+						<th>Pending admission from the chief:</th>
+					  </tr>
+					</thead>
+						<tbody>
+							<tr>
+								<td>
+									<% if user.image? %>
+										<row style="color:lightgray"><%= image_tag user.image_url(:tiny).to_s %><i> <%= user.combined_name %> (Pending)</i></row>
+									<% else %>
+										<row style="color:lightgray"><%= image_tag '/assets/blank_user.png' %><i> <%= user.combined_name %> (Pending)</i></row>
+									<% end %>
+								</td>
+							</tr>
+						</tbody>		
+				</table>
+						<% else %>	
+						<% end %>
+					<% end %>
+				<% end %>
+				<% end %>
 				
+						
 				<% else %>
 				<div class="hero-unit" style="text-align:center">
 				  <p style="text-align:center; font-size:25px">Your tribe looks lonely, invite some people to join!</p>
 					<%= button_to "Invite someone to join #{tribe.name}", users_path, class: "btn btn-primary btn-large", :method => "get" %>
 				</div>
+				
 				<% end %>			
 			</div>
 	
-	</div>		
+	</div>
+	
+		
 </div>
+<% end %>
 <% end %>
 
 

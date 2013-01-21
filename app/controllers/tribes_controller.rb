@@ -12,14 +12,10 @@ class TribesController < ApplicationController
       @tribes = current_user.tribes.paginate(page: params[:page])
       end
   end
-
-  def show
+  
+  def edit
     @tribe = Tribe.find(params[:id])
-#    if @tribe.users << current_user
-#      redirect_to @tribe
-#    else
-#      redirect_to root_path
-#    end
+    @tribemembers = @tribe.members.order_by('first_name ASC').collect {|x| [x.combined_name, x.id] }
   end
   
   def create
@@ -44,16 +40,12 @@ class TribesController < ApplicationController
           render 'new'
       end
     end
-    
-  def edit
-      @tribe = Tribe.find(params[:id])
-  end
 
   def update
     @tribe = Tribe.find(params[:id])
     if @tribe.update_attributes(params[:tribe])
       flash[:success] = "Tribe Updated"
-      redirect_to @tribe
+      redirect_to tribes_path
     else  
       render 'edit'
     end  

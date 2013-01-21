@@ -1,8 +1,6 @@
-<% @tribes = current_user.tribes.order_by('name ASC').collect {|x| [x.name, x.id] } %>
-
 <%= f.label :tribe_id %><br/>
 
 <%= f.select :tribe_id, @tribes %>
-<%= f.hidden_field :status, :value => "pending" %>
 <%= f.hidden_field :invited_by, :value => current_user.id %>
-<%= current_user.first_name %>
+
+

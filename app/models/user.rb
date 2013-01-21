@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :image, :tribe_invite, :memberships_attributes
-
+  
+  scope :order_by, lambda { |o| {:order => o} }  
 
   validates_presence_of :first_name, :last_name
   # attr_accessible :title, :body

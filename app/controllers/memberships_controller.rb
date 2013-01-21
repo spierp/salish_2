@@ -41,4 +41,14 @@ before_filter :authenticate_user!
     redirect_to memberships_path
   end
   
+  def update
+    @membership = Membership.find(params[:id])
+    if @membership.update_attributes(params[:membership])
+      flash[:success] = "Membership Updated"
+      redirect_to :back
+    else  
+      render :back
+    end  
+  end
+  
 end
