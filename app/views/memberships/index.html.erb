@@ -15,7 +15,7 @@
 		<% for membership in @memberships %>
 		<tr>
 			<td><%= membership.id %></td>
-			<td><row><%= image_tag membership.tribe.image_url(:tiny).to_s if membership.tribe.image? %> <%= membership.tribe.name %></td>
+			<td><row><%#= image_tag membership.tribe.image_url(:tiny).to_s if membership.tribe.image? %> <%#= membership.tribe.name %></td>
 			<td><% if membership.user.image? %>
 				<row><%= image_tag membership.user.image_url(:tiny).to_s %> <%= membership.user.combined_name %> </row>
 				<% else %>
