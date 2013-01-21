@@ -28,19 +28,26 @@
 				</button>
 
 				<div id="<%= user.id %>" class="collapse">
-						<% for tribe in user.tribes %>
-						<%= tribe.name %><br>
-						<% end %>
-						<% membership = user.memberships.build %>
-						<%= form_for user do |f| %>
-						  <%= render 'shared/error_messages', object: user %>
 					
-							<%= f.fields_for :memberships do |builder| %>
-								<%= render "shared/membership_fields", :f => builder %>
-							<% end %>
+						<%= form_for(@membership, :html => { :multipart =>true }) do |f| %>
+							<%#= render 'shared/error_messages', object: @tribe %>	
+							<%= f.label :tribe_id, "Tribe" %>
+							<%= f.select :tribe_id, @tribes %>
+							<%= f.hidden_field :user_id, :value => user.id %>
+							<%= f.hidden_field :status, :value => "pending" %>
+							<%= f.hidden_field :invited_by, :value => current_user.id %>								
+
+							<div id="loading">
+							    <div id="loadingcontent">
+							        <p id="loadingspinner">
+							            Inviting...
+							        </p>
+							    </div>
+							</div>
+
+							<%= f.submit "Invite user", class: "btn btn-large btn-primary", :id => "submitbtn" %>
 
 
-							<%= f.submit "Invite", class: "btn btn-large btn-primary"%>
 
 						<% end %>
 					
@@ -54,15 +61,42 @@
 		<% end %>
 		<% end %>
 	</tbody>
-</table>	
+</table>
+<% if current_user.admin? %>
+<hr>
+<table class="table table-striped" id="users">
+	<thead>	
+	  <tr>
+		<th>Name</th>
+	    <th>Joined</th>		
+	    <th>Delete</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% for user in @users %>
+		<% if user.confirmed_at.blank? %>
+		<% else %>
+		<tr>
+			<td><% if user.image? %>
+			<row><%= image_tag user.image_url(:tiny).to_s %> <%= user.combined_name %> </row>
+			<% else %>
+			<row><%= image_tag '/assets/blank_user.png' %> <%= user.combined_name %> </row>
+			<% end %></td>
+			<td><%= user.confirmed_at.strftime("%m/%d/%Y") %></td>
+			<td><%= link_to "Delete", user, method: :delete, confirm: "You sure?" %></td>	
+		</tr>	
+		<% end %>
+		<% end %>
+	</tbody>
+</table>
+<% else %>
+<% end %>	
 <hr>
 <div class="well" style="text-align:center">
 <h2>Don't see who you are looking for?</h2>
 <p><%= button_to "Invite someone to join Sali.sh", 'users/invitation/new', class: "btn btn-primary btn-large", :method => "get" %></p>
 </div>
 
-<%# if current_user.admin? %>
-<%#= link_to "Remove from tribe", tribe.kick(user), method: :delete, confirm: "You sure?" %>
 
 <script type="text/javascript">		
 $(document).ready(function() {
@@ -79,4 +113,27 @@ $(document).ready(function() {
 	            ]
         } );
     } );
+</script>
+
+<script type="text/javascript" 
+        src="@Url.Content("~/Scripts/spin.min.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#submitbtn").click(function () {
+            $("#loading").fadeIn();
+            var opts = {
+                lines: 15, // The number of lines to draw
+                length: 27, // The length of each line
+                width: 5, // The line thickness
+                radius: 20, // The radius of the inner circle
+                color: '#000', // #rgb or #rrggbb
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false // Whether to use hardware acceleration
+            };
+            var target = document.getElementById('loading');
+            var spinner = new Spinner(opts).spin(target);
+        });
+    });
 </script>

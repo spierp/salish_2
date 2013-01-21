@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @tribes = current_user.tribes.order_by('name ASC').collect {|x| [x.name, x.id] }
+    @membership = Membership.new
   end
 
   def show
@@ -21,6 +22,12 @@ class UsersController < ApplicationController
     else  
       render 'new'
     end  
+  end
+  
+  def destroy
+    @user = User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_path
   end
   
 end

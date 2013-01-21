@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
   # attr_accessible :title, :body
   
-  has_many :memberships
+  has_many :memberships, :dependent => :destroy
   has_many :tribes, :through => :memberships
   has_many :owned, :class_name => "Tribe", :foreign_key => "owner_id"
   accepts_nested_attributes_for :memberships
