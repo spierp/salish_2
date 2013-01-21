@@ -24,7 +24,7 @@ class TribesController < ApplicationController
     @tribe.owner_id = current_user.id
     if @tribe.save
       flash[:success] = "Tribe started!"
-      redirect_to @tribe
+      redirect_to tribes_path
     else    
       render 'new'
     end
