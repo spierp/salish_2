@@ -28,7 +28,7 @@ before_filter :authenticate_user!
       else @membership.status == "pending"
         flash[:notice] = "Invitation sent.  Please ask your cheif to welcome this new member to the tribe." 
       end     
-      redirect_to :back
+      redirect_to tribes_path
     else
       flash[:error] = "Unable to invite.  Maybe this user is already a member of your tribe?"
       redirect_to :back

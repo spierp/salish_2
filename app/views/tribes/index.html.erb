@@ -1,7 +1,7 @@
 <% provide(:title, 'My Tribes')%>
 
 <% if current_user.memberships.empty? %>
-<div class="hero-unit" style="text-align:center">
+<div class="hero-unit" style="text-align:center;background:white">
   <p style="text-align:center; font-size:25px">Sure is lonely around here...</p>
 	<p><%= button_to "Start a tribe!", new_tribe_path, class: "btn btn-primary btn-large", :method => "get" %></p>
 </div>
@@ -19,36 +19,38 @@
 				<% end %>	
 			</div>
 			<div class="span7">
-				<div class="span3">
 					<row><h3>Chief:</h3> 
 					<% if tribe.owner.image? %>
 					<row><%= image_tag tribe.owner.image_url(:tiny).to_s, :class => "usericon" %> <span style="font-size:18px"><%= tribe.owner.combined_name %></span></row>
 					<% else %>
 					<row><%= image_tag '/assets/blank_user.png' %> <span style="font-size:18px"><%= tribe.owner.combined_name %></span> </row>
 					<% end %>	
-					</div>
-				<div class="span3" style="float:right; text-align:right">
+				<span style="float:right; text-align:right">
 					<% if current_user.id == tribe.owner_id %>
 					<%= button_to "Edit Tribe", "/tribes/#{tribe.id}/edit", class: "btn btn-mini", :method => "get" %></row>
 					<% else %>
 					<% end %>
-				</div>
+				</span>
 			</div>	
 			<div class="span7">			
 				<hr>
 					<% if tribe.users.count > 1 %>
+
+					
 				<table class="table table-striped" id="members">
 					<thead>	
 					  <tr>
-						<th>Members:</th>
+						<th>Name</th>
+						<th>Joined</th>
+						<th>Status</th>
 					  </tr>
 					</thead>
 						<tbody>
-						<% for user in tribe.users %>
-						<% if user.confirmed_at.blank? %>
-						<% else %>
-							<% for membership in user.memberships %>
-								<% if membership.status == "approved" && membership.tribe_id == tribe.id && membership.user_id != tribe.owner_id %>
+							<% for user in tribe.users %>
+							<% if user.confirmed_at.blank? %>
+							<% else %>
+								<% for membership in user.memberships %>
+									<% if membership.status == "approved" && membership.tribe_id == tribe.id && membership.user_id != tribe.owner_id %>
 									<tr>
 										<td>
 											<row>
@@ -71,46 +73,60 @@
 											<% end %>
 											</row>
 										</td>
+										<td style="vertical-align:middle"><%= membership.created_at.strftime("%m/%d/%Y") %></td>
+										<td style="vertical-align:middle">Member</td>
 									</tr>
-								<% end %>
-									</tr>	
+								<% end %>	
 							<% end %>
 						<% end %>
 						<% end %>
+						
+						<% for user in tribe.users %>
+						<% if user.confirmed_at.blank? %>
+						<% else %>
+							<% for membership in user.memberships %>
+								<% if membership.status == "pending" && membership.tribe_id == tribe.id %>
+								<tr>
+									<td>
+										<row style="color:lightgray">
+										<% if user.image? %>
+											<%= image_tag user.image_url(:tiny).to_s %><i> <%= user.combined_name %></i>
+										<% else %>
+											<%= image_tag '/assets/blank_user.png' %><i> <%= user.combined_name %></i>
+										<% end %>
+										<% if current_user.id == user.id %>
+										<span style="text-align:right;float:right">
+									
+											<%= button_to "Leave this tribe", membership, class: "btn btn-danger btn-small", 
+																		:style => "margin:0px !important;font-size:14px !important; height:30px !important",
+																		method: :delete,
+																		confirm: "You sure?", 
+																		title: membership.tribe.name %></span>
+									
+
+										<% else %>
+										<% end %>
+
+									</td>
+									<td style="color:lightgray;vertical-align:middle"><i><%= membership.created_at.strftime("%m/%d/%Y") %></i></td>
+									<td style="color:lightgray;vertical-align:middle"><i>waiting for the chief's acceptance</i></td>
+									</row>
+								</tr>
+								<% end %>	
+							<% end %>
+						<% end %>
+						<% end %>						
+						
 					</tbody>		
 				</table>
-				<% for user in tribe.users %>
-				<% if user.confirmed_at.blank? %>
-				<% else %>
-					<% for membership in user.memberships %>
-						<% if membership.status == "pending" && membership.tribe_id == tribe.id %>
-				<table class="table table-striped" id="members">
-					<thead>	
-					  <tr>
-						<th>Pending admission from the chief:</th>
-					  </tr>
-					</thead>
-						<tbody>
-							<tr>
-								<td>
-									<% if user.image? %>
-										<row style="color:lightgray"><%= image_tag user.image_url(:tiny).to_s %><i> <%= user.combined_name %> (Pending)</i></row>
-									<% else %>
-										<row style="color:lightgray"><%= image_tag '/assets/blank_user.png' %><i> <%= user.combined_name %> (Pending)</i></row>
-									<% end %>
-								</td>
-							</tr>
-						</tbody>		
-				</table>
-						<% else %>	
-						<% end %>
-					<% end %>
-				<% end %>
-				<% end %>
+
+
+
+
 				
 						
 				<% else %>
-				<div class="hero-unit" style="text-align:center">
+				<div class="hero-unit" style="text-align:center;background:white">
 				  <p style="text-align:center; font-size:25px">Your tribe looks lonely, invite some people to join!</p>
 					<%= button_to "Invite someone to join #{tribe.name}", users_path, class: "btn btn-primary btn-large", :method => "get" %>
 				</div>
@@ -124,5 +140,24 @@
 </div>
 <% end %>
 <% end %>
+
+<script type="text/javascript">		
+$(document).ready(function() {
+   var oTable = $('#members').dataTable( {
+	    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"bLengthChange": false,
+		"bFilter": false,
+		"bInfo": false,						
+	    "bPaginate": false,				
+		"iDisplayLength": 10,
+		"aaSorting": [[ 2, "desc" ]],					
+		"aoColumns": [
+	                null,																																
+					{ "sType": "datetime-us" },																	
+					null
+	            ]
+        } );
+    } );
+</script>
 
 

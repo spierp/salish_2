@@ -15,6 +15,10 @@ class TribesController < ApplicationController
   
   def edit
     @tribe = Tribe.find(params[:id])
+    if current_user.id == @tribe.owner_id
+    elsif current_user.admin?
+    else redirect_to root_path
+    end  
     @tribemembers = @tribe.members.order_by('first_name ASC').collect {|x| [x.combined_name, x.id] }
   end
   
