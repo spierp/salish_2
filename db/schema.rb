@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121135130) do
+ActiveRecord::Schema.define(:version => 20130122054635) do
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(:version => 20130121135130) do
     t.integer  "invited_by"
     t.string   "status",     :default => "approved"
     t.string   "tribeuser"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "tribe_id"
+    t.integer  "circle_id"
+    t.string   "attachment"
+    t.text     "text"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "image"
+    t.string   "attachment_filetype"
+    t.decimal  "attachment_filesize"
   end
 
   create_table "tribes", :force => true do |t|

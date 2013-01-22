@@ -10,6 +10,8 @@ class Tribe < ActiveRecord::Base
   has_many :users, :through => :memberships
   accepts_nested_attributes_for :users
   
+  has_many :posts, :through => :users
+  
   has_many :members, :through => :memberships, :source => :user
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
   

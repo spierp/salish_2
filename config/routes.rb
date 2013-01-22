@@ -8,6 +8,7 @@ Salish::Application.routes.draw do
       get 'join', :on => :member
     end
   resources :memberships
+  resources :posts
   
   root to: 'tribes#index'
   

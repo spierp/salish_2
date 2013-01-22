@@ -1,0 +1,47 @@
+<%= form_for(@post, :html => { :multipart =>true }) do |f| %>
+	<%#= render 'shared/error_messages', object: @tribe %>	
+	<%= f.label :text %>
+	<%= f.text_field :text %>
+	
+  	<%= f.label :attachment, "Attachment" %>
+  	<%= f.file_field :attachment %>
+
+  	<%= f.label :image, "Image" %>
+  	<%= f.file_field :image %>
+
+	<div id="loading">
+	    <div id="loadingcontent">
+	        <p id="loadingspinner">
+	            Creating Post...
+	        </p>
+	    </div>
+	</div>
+
+	<%= f.submit "Post", class: "btn btn-large btn-primary", :id => "submitbtn" %>
+	
+
+	
+<% end %>
+
+<script type="text/javascript" 
+        src="@Url.Content("~/Scripts/spin.min.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#submitbtn").click(function () {
+            $("#loading").fadeIn();
+            var opts = {
+                lines: 15, // The number of lines to draw
+                length: 27, // The length of each line
+                width: 5, // The line thickness
+                radius: 20, // The radius of the inner circle
+                color: '#000', // #rgb or #rrggbb
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false // Whether to use hardware acceleration
+            };
+            var target = document.getElementById('loading');
+            var spinner = new Spinner(opts).spin(target);
+        });
+    });
+</script>

@@ -1,0 +1,6 @@
+<% for post in current_user.posts %>
+<%= post.text %>
+<%#= if post.attachment %>
+<%= image_tag(post.attachment_url(:large).to_s, :class => "thumbnail" ) %>
+<% end %>
+
