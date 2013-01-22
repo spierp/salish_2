@@ -51,11 +51,25 @@
 								<% if membership.status == "approved" && membership.tribe_id == tribe.id && membership.user_id != tribe.owner_id %>
 									<tr>
 										<td>
+											<row>
 											<% if user.image? %>
-											<row><%= image_tag user.image_url(:tiny).to_s, :class => "usericon" %> <%= user.combined_name %> </row>
+											<%= image_tag user.image_url(:tiny).to_s, :class => "usericon" %> <%= user.combined_name %>
 											<% else %>
-											<row><%= image_tag '/assets/blank_user.png' %> <%= user.combined_name %> </row>
+											<%= image_tag '/assets/blank_user.png' %> <%= user.combined_name %> 
 											<% end %>
+											<% if current_user.id == user.id %>
+											<span style="text-align:right;float:right">
+												
+												<%= button_to "Leave this tribe", membership, class: "btn btn-danger btn-small", 
+																			:style => "margin:0px !important;font-size:14px !important; height:30px !important",
+																			method: :delete,
+																			confirm: "You sure?", 
+																			title: membership.tribe.name %>
+												
+												</span>
+											<% else %>
+											<% end %>
+											</row>
 										</td>
 									</tr>
 								<% end %>

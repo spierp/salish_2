@@ -13,6 +13,8 @@
 		<% for user in @users %>
 		<% if user.confirmed_at.blank? %>
 		<% else %>
+		<% if current_user.id == user.id %>
+		<% else %>
 		<tr>
 			<td><% if user.image? %>
 			<row><%= image_tag user.image_url(:tiny).to_s, :class => "usericon" %> <%= user.combined_name %> </row>
@@ -28,11 +30,10 @@
 				</button>
 
 				<div id="<%= user.id %>" class="collapse">
-					
+						<span style="text-align:right;float:right">
 						<%= form_for(@membership, :html => { :multipart =>true }) do |f| %>
 							<%#= render 'shared/error_messages', object: @tribe %>	
-							<%= f.label :tribe_id, "Tribe" %>
-							<%= f.select :tribe_id, @tribes %>
+							<%= f.select :tribe_id, @tribes,{:prompt => 'Select Tribe'}, :style => "width:225px !important; margin-bottom:0px;height:30px !important" %>
 							<%= f.hidden_field :user_id, :value => user.id %>
 
 							<%= f.hidden_field :invited_by, :value => current_user.id %>								
@@ -45,12 +46,12 @@
 							    </div>
 							</div>
 
-							<%= f.submit "Invite user", class: "btn btn-large btn-primary", :id => "submitbtn" %>
+							<%= f.submit "Invite user", class: "btn btn-mini btn-success",:style => "margin:0px !important;font-size:14px !important; height:30px !important", :id => "submitbtn" %>
 
 
 
 						<% end %>
-					
+						</div>
 					</div>
 				
 				
@@ -58,6 +59,7 @@
 				
 			</td>	
 		</tr>	
+		<% end %>
 		<% end %>
 		<% end %>
 	</tbody>

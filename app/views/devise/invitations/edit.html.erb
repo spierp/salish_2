@@ -1,15 +1,10 @@
 <h2>Welcome to Sali.sh!</h2>
-<h3><%= t 'devise.invitations.edit.header' %></h3>
+<h3 style="text-align:center"><%= t 'devise.invitations.edit.header' %></h3><br>
 <div class="formcenter">
 
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :invitation_token %>
-
-	<%= f.fields_for :memberships do |builder| %>
-   <div><%= builder.label :tribe_id %><br/>
-	<%= builder.text_field :tribe_id %><br/></div>
-	<% end %>
 
   <div><%= f.label :first_name %><br />
   <%= f.text_field :first_name %></div>
@@ -23,6 +18,7 @@
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
+	<%= image_tag '/assets/blank_user.png' %>
   <div><%= f.label :image %> <i>(Profile Picture)</i><br />
   <%= f.file_field :image %></div>
 
