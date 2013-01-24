@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
   
   before_save :update_attachment_attributes
   
+  default_scope order: 'posts.created_at DESC'
+  
   def default_name
     self.name ||= File.basename(attachment.filename, '.*').titleize if attachment
   end

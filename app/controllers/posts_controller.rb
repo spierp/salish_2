@@ -6,7 +6,19 @@ class PostsController < ApplicationController
   end
 
   def index
+    if current_user.memberships.empty?
+      redirect_to tribes_path
+    else   
     @posts = Post.all
+    end
+  end
+  
+  def slides
+    @posts = Post.all
+  end
+  
+  def show
+    @post = Post.find(params[:id])
   end
   
   def edit

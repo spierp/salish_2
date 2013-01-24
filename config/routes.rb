@@ -2,15 +2,19 @@ require 'sidekiq/web'
 
 Salish::Application.routes.draw do
  
-  devise_for :users, :controllers => { :invitations => 'invitations' }, :path => '', :path_names => {:sign_in => 'sign_in', :sign_out => 'sign_out', :sign_up => 'hey_sign_up'}  
+  devise_for :users, :controllers => { :invitations => 'invitations' }#, :path => '', :path_names => {:sign_in => 'sign_in', :sign_out => 'sign_out', :sign_up => 'hey_sign_up'}  
   resources :users
   resources :tribes do
       get 'join', :on => :member
     end
   resources :memberships
-  resources :posts
+  resources :posts, path: "" do
+    member do
+      get 'slides'
+    end
+  end  
   
-  root to: 'tribes#index'
+  root to: 'posts#index'
   
   match '/about', to: 'static_pages#about'
   match '/users/:id', :to => 'users#destroy', :as => :destroy_user, :via => :delete
