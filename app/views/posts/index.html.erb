@@ -1,8 +1,5 @@
 
 
-
-
-
 <% for post in current_user.posts %>
 
 <div class="row" style=
@@ -22,7 +19,12 @@ top: 25px;
 left: 25px; 
 z-index: 3;
 ">
-<%= image_tag post.user.image_url(:tiny).to_s, :class => "usericon"  %> <span style="font-size:16px"><%= post.user.combined_name %></span>
+<% if post.user.image? %>
+<%= image_tag post.user.image_url(:tiny).to_s, :class => "usericon"  %>
+<% else %>
+<%= image_tag '/assets/blank_user.png' %>
+<% end %>
+<span style="font-size:16px"><%= post.user.combined_name %></span>
 </div>
 
 <div class="text" style="
@@ -47,19 +49,25 @@ line-height:26px;
 
 <% else %>
 <div style="height:500px">
+<%= post.text %><br>
+<%= post.attachment_url %>
 
+<audio controls>
+  <source src="<%= post.attachment_url %>" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 
-
-
-
-
-</div>
-<hr>
 <% end %>
 </div>
 <% end %>
 
 
+<script type="text/javascript">
+soundManager.setup({
+  // path to directory containing SM2 SWF
+  url: '/swf/'
+});
+</script>
 
 <!-- <script type="text/javascript">
   $(".text").fitText(1.5, { minFontSize: '12px', maxFontSize: '36px' });
