@@ -1,10 +1,10 @@
-
+<script src="/assets/fittext.js"></script>
 
 <% for post in current_user.posts %>
 
 <div class="row" style=
-"max-width:960px;
-width:90%;
+"max-width:940px;
+min-width:940px;
 margin-left:auto;
 margin-right:auto;
 ">
@@ -24,59 +24,41 @@ z-index: 3;
 <% else %>
 <%= image_tag '/assets/blank_user.png' %>
 <% end %>
-<span style="font-size:16px"><%= post.user.combined_name %></span>
+<span style="font-size:24px"><%= post.user.combined_name %></span>
 </div>
 
-<div class="text" style="
-position:absolute;
-padding:10px;
-background-color:rgba(255,255,255,0.5);
-bottom:25px;
-left: 25px; 
-z-index: 3;
-margin-right:25px;
-display: block;
-font-size:24px;
-line-height:26px;
-">
-<%= post.text %>
-</div>
 
+	<div class="text1" style="
+	position:absolute;
+	padding:10px;
+	background-color:rgba(255,255,255,0.5);
+	bottom:25px;
+	left: 25px; 
+	z-index: 3;
+	margin-right:25px;
+	display: block;
+	font-size:24px;
+	line-height:28px;
+	">
+	<%= post.text %>
+	</div>
 
 
 </div>
 <hr>
 
 <% else %>
-<div style="height:500px">
+
+
 <%= post.text %><br>
-<%= post.attachment_url %>
 
 <audio controls>
   <source src="<%= post.attachment_url %>" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
 
-
-
-<div class="ui360">
- <a href="<%= post.attachment_url %>">play "an.mp3"</a>
-</div>
-
-
+<hr>
 
 <% end %>
 </div>
 <% end %>
-
-
-<script type="text/javascript">
-soundManager.setup({
-  // path to directory containing SM2 SWF
-  url: '/swf/'
-});
-</script>
-
-<!-- <script type="text/javascript">
-  $(".text").fitText(1.5, { minFontSize: '12px', maxFontSize: '36px' });
-</script> -->

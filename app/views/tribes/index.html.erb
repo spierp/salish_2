@@ -50,7 +50,7 @@
 							<% if user.confirmed_at.blank? %>
 							<% else %>
 								<% for membership in user.memberships %>
-									<% if membership.status == "approved" && membership.tribe_id == tribe.id && membership.user_id != tribe.owner_id %>
+									<% if membership.status == "member" && membership.tribe_id == tribe.id && membership.user_id != tribe.owner_id %>
 									<tr>
 										<td>
 											<row>
