@@ -4,12 +4,10 @@ class Membership < ActiveRecord::Base
   belongs_to :tribe
   attr_accessible :name, :tribe_id, :user_id, :invited_by, :status, :tribeuser
   
-  before_validation :set_tribeuser
+  before_create :set_tribeuser
   
   validates_uniqueness_of :tribeuser 
-  
-  
-  
+
   private
     def set_tribeuser
       self.tribeuser = "#{self.user_id}_#{self.tribe_id}"
