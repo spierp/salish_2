@@ -47,6 +47,11 @@ class TribesController < ApplicationController
 
   def update
     @tribe = Tribe.find(params[:id])
+    params["membership"].each do |id, values|
+      m = Membership.find(id)
+      m.update_attributes(:status => values[:status])
+    end
+    
     if @tribe.update_attributes(params[:tribe])
       flash[:success] = "Tribe Updated"
       redirect_to tribes_path

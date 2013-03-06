@@ -68,10 +68,8 @@
 									<% if membership.tribe_id == @tribe.id %>
 									<td style="vertical-align:middle"><%= membership.created_at.strftime("%m/%d/%Y") %></td>
 									<td style="vertical-align:middle">
-										  <row><%= form_for(membership, :html => { :multipart =>true }) do |f| %>
-										    <%= f.select(:status, ['member','pending','exiled'],{}, :style => "width:125px !important; margin-bottom:0px;height:30px !important;" ) %>
-											<%= f.submit "Update", class: "btn btn-mini btn-info", :style => "margin:0px !important;font-size:14px !important; height:30px !important", :id => "submitbtn" %>
-										  <% end %>	
+										  <row>
+											<%= select_tag("membership[#{membership.id}][status]", select_options(["member", "pending", "exiled"], membership.status).html_safe, :style => "width:125px !important; margin-bottom:0px;height:30px !important;") %>
 											</row>
 										</td>
 								<% end %>
@@ -84,6 +82,7 @@
 		
 			</div>	
 	</div>
+	
 	<span style="float:right"><%= button_to "Delete Tribe", @tribe, class: "btn btn-danger btn-small", 
 								:style => "margin:0px !important;font-size:14px !important; height:30px !important",
 								method: :delete,
