@@ -2,12 +2,22 @@
 
 <% for post in current_user.posts %>
 
+<% if mobile_device? %>
+<div class="row" style=
+"max-width:200px;
+min-width:200px;
+margin-left:auto;
+margin-right:auto;
+">
+<% else %>
 <div class="row" style=
 "max-width:940px;
 min-width:940px;
 margin-left:auto;
 margin-right:auto;
 ">
+<% end %>
+
 <% if post.image? %>
 <div style="position: relative; left: 0; top: 0;">
 <%= image_tag post.image_url(:xlarge).to_s, :style => "position:relative; top: 0px; left: 0px; z-index: 1;"  %>
