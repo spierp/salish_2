@@ -14,7 +14,7 @@ class CirclesController < ApplicationController
     @circle = Circle.new(params[:circle])
     if @circle.save
       flash[:success] = "circle created!"
-      redirect_to posts_path
+      redirect_to @circle
     else    
       render 'new'
     end
