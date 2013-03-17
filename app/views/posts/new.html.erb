@@ -9,6 +9,8 @@
   	<%= f.label :image, "Image" %>
   	<%= f.file_field :image %>
 
+	<%= f.select :tribe_id, @tribes,{:prompt => 'Select Tribe'} %>
+
 	<div id="loading">
 	    <div id="loadingcontent">
 	        <p id="loadingspinner">
@@ -17,7 +19,7 @@
 	    </div>
 	</div>
 
-	<%= f.submit "Post", class: "btn btn-large btn-primary", :id => "submitbtn" %>
+	<%= f.submit "Preview", class: "btn btn-large btn-primary", :id => "submitbtn" %>
 	
 
 	

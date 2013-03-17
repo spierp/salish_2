@@ -1,0 +1,8 @@
+<%= form_for(@circle, :html => { :multipart =>true }) do |f| %>
+	<%#= render 'shared/error_messages', object: @tribe %>	
+
+	<%= f.select :tribe_id, @tribes,{:prompt => 'Select Tribe'} %>
+
+	<%= f.submit "Create", class: "btn btn-large btn-primary", :id => "submitbtn" %>
+	
+<% end %>

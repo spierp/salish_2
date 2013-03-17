@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @tribes = current_user.tribes.order_by('name ASC').collect {|x| [x.name, x.id] }
   end
 
   def index

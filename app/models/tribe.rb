@@ -12,6 +12,8 @@ class Tribe < ActiveRecord::Base
   
   has_many :posts, :through => :users
   
+  has_many :circles
+  
   has_many :members, :through => :memberships, :source => :user
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
   

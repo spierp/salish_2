@@ -4,6 +4,7 @@ Salish::Application.routes.draw do
  
   devise_for :users, :controllers => { :invitations => 'invitations' }#, :path => '', :path_names => {:sign_in => 'sign_in', :sign_out => 'sign_out', :sign_up => 'hey_sign_up'}  
   resources :users
+  resources :circles
   resources :tribes do
       get 'join', :on => :member
     end
