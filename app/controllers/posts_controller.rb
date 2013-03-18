@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     if current_user.memberships.empty?
       redirect_to tribes_path
     else   
-    @posts = Post.all
+    @posts = current_user.posts.all
     end
   end
   
@@ -19,12 +19,18 @@ class PostsController < ApplicationController
   end
   
   def show
-    @post = Post.find(params[:id])
+    if Post.find(params[:id]).user_id == current_user.id
+      @post = Post.find(params[:id])
+      elsif current_user.admin?
+      else
+        redirect_to root_path
+      end   
   end
   
   def edit
-    @post = Tribe.find(params[:id])
+    @post = Post.find(params[:id])
     if current_user.id == @post.user_id
+    @tribes = current_user.tribes.order_by('name ASC').collect {|x| [x.name, x.id] }  
     elsif current_user.admin?
     else redirect_to root_path
     end  
@@ -34,7 +40,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(params[:post])
     if @post.save
       flash[:success] = "Posted!"
-      redirect_to posts_path
+      redirect_to @post
     else    
       render 'new'
     end
