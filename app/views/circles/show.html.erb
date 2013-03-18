@@ -3,67 +3,69 @@
 <% for user in @circle.tribe.users %>
 	<% for membership in user.memberships %>
 		<% if membership.status == "member" && membership.tribe_id == @circle.tribe.id %>
-			<% @tribeposts = user.posts.where("tribe_id = ?", @circle.tribe.id) %>
-				<div class="row" style=
-				"max-width:940px;
-				min-width:940px;
-				margin-left:auto;
-				margin-right:auto;
-				">
 
-				<% if @tribeposts.first.image? %>
-				<div style="position: relative; left: 0; top: 0;">
-				<%= image_tag @tribeposts.first.image_url(:xlarge).to_s, :style => "position:relative; top: 0px; left: 0px; z-index: 1;"  %>
-				<div style="
+			<% for post in user.posts.limit(1).where("tribe_id = ?", @circle.tribe.id) %>
+			<div class="row" style=
+			"max-width:940px;
+			min-width:940px;
+			margin-left:auto;
+			margin-right:auto;
+			">
+
+			<% if post.image? %>
+			<div style="position: relative; left: 0; top: 0;">
+			<%= image_tag post.image_url(:xlarge).to_s, :style => "position:relative; top: 0px; left: 0px; z-index: 1;"  %>
+			<div style="
+			position:absolute;
+			padding:10px;
+			background-color:rgba(255,255,255,0.5);
+			top: 25px; 
+			left: 25px; 
+			z-index: 3;
+			">
+			<% if post.user.image? %>
+			<%= image_tag post.user.image_url(:tiny).to_s, :class => "usericon"  %>
+			<% else %>
+			<%= image_tag '/assets/blank_user.png' %>
+			<% end %>
+			<span style="font-size:24px"><%= post.user.combined_name %></span>
+			</div>
+
+
+				<div class="text1" style="
 				position:absolute;
 				padding:10px;
 				background-color:rgba(255,255,255,0.5);
-				top: 25px; 
+				bottom:25px;
 				left: 25px; 
 				z-index: 3;
+				margin-right:25px;
+				display: block;
+				font-size:24px;
+				line-height:28px;
 				">
-				<% if @tribeposts.first.user.image? %>
-				<%= image_tag @tribeposts.first.user.image_url(:tiny).to_s, :class => "usericon"  %>
-				<% else %>
-				<%= image_tag '/assets/blank_user.png' %>
-				<% end %>
-				<span style="font-size:24px"><%= @tribeposts.first.user.combined_name %></span>
+				<%= post.text %>
 				</div>
 
 
-					<div class="text1" style="
-					position:absolute;
-					padding:10px;
-					background-color:rgba(255,255,255,0.5);
-					bottom:25px;
-					left: 25px; 
-					z-index: 3;
-					margin-right:25px;
-					display: block;
-					font-size:24px;
-					line-height:28px;
-					">
-					<%= @tribeposts.first.text %>
-					</div>
+			</div>
+			<hr>
+
+			<% else %>
 
 
-				</div>
-				<hr>
+			<%= post.text %><br>
 
-				<% else %>
+			<audio controls>
+			  <source src="<%= post.attachment_url %>" type="audio/mpeg">
+			Your browser does not support the audio element.
+			</audio>
 
+			<hr>
 
-				<%= @tribeposts.first.text %><br>
-
-				<audio controls>
-				  <source src="<%= @tribeposts.first.attachment_url %>" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-
-				<hr>
-
-				<% end %>
-				</div>
+			<% end %>
+			</div>
+			<% end %>
 		<% end %>
 	<% end %>
 <% end %>
