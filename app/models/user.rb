@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :tribes, :through => :memberships
   has_many :owned, :class_name => "Tribe", :foreign_key => "owner_id"
   has_many :posts, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
   
   accepts_nested_attributes_for :memberships
 

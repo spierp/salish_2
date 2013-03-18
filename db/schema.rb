@@ -11,13 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317215152) do
+ActiveRecord::Schema.define(:version => 20130318031318) do
 
   create_table "circles", :force => true do |t|
     t.integer  "tribe_id"
     t.string   "privatelink"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.string   "text"
+    t.string   "emoti"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "first_name"
   end
 
   create_table "memberships", :force => true do |t|

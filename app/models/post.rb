@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   attr_accessible :attachment, :circle_id, :text, :tribe_id, :user_id, :attachment_filesize, :attachment_filetype, :image
   belongs_to :user
   belongs_to :tribe
+  has_many :comments
   
   before_save :update_attachment_attributes
   

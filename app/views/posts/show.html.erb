@@ -1,0 +1,70 @@
+<script src="/assets/fittext.js"></script>
+
+
+<div class="row" style=
+"max-width:940px;
+min-width:940px;
+margin-left:auto;
+margin-right:auto;
+">
+
+<% if @post.image? %>
+<div style="position: relative; left: 0; top: 0;">
+<%= image_tag @post.image_url(:xlarge).to_s, :style => "position:relative; top: 0px; left: 0px; z-index: 1;"  %>
+<div style="
+position:absolute;
+padding:10px;
+background-color:rgba(255,255,255,0.5);
+top: 25px; 
+left: 25px; 
+z-index: 3;
+">
+<% if @post.user.image? %>
+<%= image_tag @post.user.image_url(:tiny).to_s, :class => "usericon"  %>
+<% else %>
+<%= image_tag '/assets/blank_user.png' %>
+<% end %>
+<span style="font-size:24px"><%= @post.user.combined_name %></span>
+</div>
+
+
+	<div class="text1" style="
+	position:absolute;
+	padding:10px;
+	background-color:rgba(255,255,255,0.5);
+	bottom:25px;
+	left: 25px; 
+	z-index: 3;
+	margin-right:25px;
+	display: block;
+	font-size:24px;
+	line-height:28px;
+	">
+	<%= @post.text %>
+	</div>
+
+
+</div>
+<hr>
+
+<% else %>
+
+
+<%= @post.text %><br>
+
+<audio controls>
+  <source src="<%= post.attachment_url %>" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<hr>
+
+<% end %>
+</div>
+<h2>Comments:</h2>
+    <div id='com'>
+      <%= render @post.comments %>
+    </div>
+
+<h2>Add a comment:</h2>
+<%= render "comments/form" %>

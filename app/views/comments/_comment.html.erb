@@ -1,0 +1,18 @@
+<% if comment.user.image? %>
+<%= image_tag comment.user.image_url(:tiny).to_s, :class => "usericon"  %>
+<% else %>
+<%= image_tag '/assets/blank_user.png' %>
+<% end %>
+<span style="font-size:16px"><%= comment.user.first_name %></span>
+<br>
+<p class="lead"><%= comment.text %></p>
+
+<% if current_user.id == comment.user_id %>
+<%= button_to "Delete",[comment.post, comment], class: "btn btn-danger btn-small", 
+							:style => "margin:0px !important;font-size:12px !important; height:24px !important; padding-top:3px;",
+							method: :delete,
+							confirm: "You sure?", 
+							title: comment.text %>
+<% end %>
+<hr>
+

@@ -1,0 +1,7 @@
+<%= form_for([@post, @post.comments.build]) do |f| %>
+
+<%= f.text_area :text, :style => "margin-top:0px;margin-right:5px; width:300px; height:80px" %>
+<%#= f.hidden_field :user_id, :value => current_user.id %>
+
+<%= submit_tag "Post", class: "btn btn-large btn-primary", :id => "submitbtn", :style => "margin-top:0px" %>
+<% end %>

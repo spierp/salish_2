@@ -10,6 +10,7 @@ Salish::Application.routes.draw do
     end
   resources :memberships
   resources :posts, path: "" do
+    resources :comments
     member do
       get 'slides'
     end
