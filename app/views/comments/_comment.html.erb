@@ -6,6 +6,10 @@
 <span style="font-size:16px;color:gray"><%= comment.user.first_name %></span>
 <br>
 <p class="lead"><%= comment.text %></p>
+<% if comment.emoti? %>
+<%= image_tag(expression_image(comment.emoti)) %>
+<% end %>
+<%#= image_tag(expression_image(comment.emoti) %>
 
 <% if current_user.id == comment.user_id %>
 <%= button_to "Delete",[comment.post, comment], class: "btn btn-danger btn-small", 
