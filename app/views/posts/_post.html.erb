@@ -64,10 +64,13 @@ Your browser does not support the audio element.
     <div id='com'>
       <%= render post.comments %>
     </div>
-
-<h4>Add a comment:</h4>
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#comment_<%= post.id %>">
+  Add Reaction
+</button>
+<div id="comment_<%= post.id %>" class="collapse">
+<hr>	
 <%= render "comments/form" %>
-<hr>
+</div>
 </div>
 </div>
 </div>

@@ -1,7 +1,41 @@
 <%= form_for([@post, @post.comments.build]) do |f| %>
 
-<%= f.text_area :text, :style => "margin-top:0px;margin-right:5px; width:300px; height:80px" %>
-<%#= f.hidden_field :user_id, :value => current_user.id %>
+<h3 style="margin-bottom:4px">Select Reaction:</h3>
+<div class="expressions-container" style="margin-bottom:8px;padding:3px">
+<img src="/assets/expression1.jpg" style="margin:3px" width="50"  height="60" alt="expression1" data-value="expression1">
+<img src="/assets/expression2.jpg" style="margin:3px" width="50"  height="60" alt="expression2" data-value="expression2">
+<img src="/assets/expression3.jpg" style="margin:3px" width="50"  height="60" alt="expression3" data-value="expression3">
+<img src="/assets/expression4.jpg" style="margin:3px" width="50"  height="60" alt="expression4" data-value="expression4">
+<img src="/assets/expression5.jpg" style="margin:3px" width="50"  height="60" alt="expression5" data-value="expression5">
+<img src="/assets/expression6.jpg" style="margin:3px" width="50"  height="60" alt="expression6" data-value="expression6">
+<img src="/assets/expression7.jpg" style="margin:3px" width="50"  height="60" alt="expression7" data-value="expression7">
+<img src="/assets/expression8.jpg" style="margin:3px" width="50"  height="60" alt="expression8" data-value="expression8">
+<img src="/assets/expression9.jpg" style="margin:3px" width="50"  height="60" alt="expression9" data-value="expression9">
+<img src="/assets/expression10.jpg" style="margin:3px" width="50" height="60" alt="expression10" data-value="expression10">
+<img src="/assets/expression11.jpg" style="margin:3px" width="50" height="60" alt="expression11" data-value="expression11">
+<img src="/assets/expression12.jpg" style="margin:3px" width="50" height="60" alt="expression12" data-value="expression12">
+</div>
+<br>
+<%= f.hidden_field :emoti %>
+<%= f.text_area :text, :style => "margin-top:0px;margin-right:5px; width:300px; font-size:18px !important", :rows => "4", placeholder: "Option comment..." %>
 
 <%= submit_tag "Post", class: "btn btn-large btn-primary", :id => "submitbtn", :style => "margin-top:0px" %>
 <% end %>
+
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#new_comment img').click(function() {
+        // Set the form value
+        $('#comment_emoti').val($(this).attr('data-value'));
+
+        // Unhighlight all the images
+        $('#new_comment img').removeClass('exp-highlighted');
+
+        // Highlight the newly selected image
+        $(this).addClass('exp-highlighted');
+    });
+});
+</script>
+
