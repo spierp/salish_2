@@ -1,29 +1,39 @@
-<%= form_for(@post, :html => { :multipart =>true }) do |f| %>
-	<%#= render 'shared/error_messages', object: @tribe %>	
-	<%= f.label :text %>
-	<%= f.text_field :text %>
+<div class="row">
+
+
+		<div class="well span4 offset4" style="width:290px;">
+
+		<%= form_for(@post, :html => { :multipart =>true }) do |f| %>
+			<%#= render 'shared/error_messages', object: @tribe %>	
+			<%= image_tag('pencil.png', :class => "pull-left") %><h2 style="text-align:left;margin-left:60px;margin-bottom:30px;padding-top:5px">Compose</h2>
+			<p class="muted" style="margin-top:0px;padding-top:0px">Use just one item below, or combine all of them into one beautiful post...</p>		
+			<hr>
+		  	<%= f.label :image, "Image" %><br>
+		  	<%= f.file_field :image %>
+			<hr>
+		  	<%= f.label :attachment, "Attachment" %><br>
+		  	<%= f.file_field :attachment %>
+			<p class="muted" style="margin-top:0px;padding-top:0px">zip, rar, mp3, mov etc...</p>		
+			<hr>
+			<%= f.text_area :text, :style => "margin-top:0px;margin-right:5px; width:275px; font-size:18px !important", :rows => "4", placeholder: "Caption..." %>
+			<hr>	
+			<%= f.select :tribe_id, @tribes, :style => "width:275px;margin-bottom:15px" %>
+
+			<div id="loading">
+			    <div id="loadingcontent">
+			        <p id="loadingspinner">
+			            Creating Preview...
+			        </p>
+			    </div>
+			</div>
+			<br>
+			<%= f.submit "Preview Post", class: "btn btn-large btn-primary", :id => "submitbtn", :style => "margin-left:0px" %>
 	
-  	<%= f.label :attachment, "Attachment" %>
-  	<%= f.file_field :attachment %>
+		<% end %>
 
-  	<%= f.label :image, "Image" %>
-  	<%= f.file_field :image %>
+		</div>
 
-	<%= f.select :tribe_id, @tribes,{:prompt => 'Select Tribe'} %>
-
-	<div id="loading">
-	    <div id="loadingcontent">
-	        <p id="loadingspinner">
-	            Creating Post...
-	        </p>
-	    </div>
-	</div>
-
-	<%= f.submit "Preview", class: "btn btn-large btn-primary", :id => "submitbtn" %>
-	
-
-	
-<% end %>
+</div>
 
 <script type="text/javascript" 
         src="@Url.Content("~/Scripts/spin.min.js")"></script>

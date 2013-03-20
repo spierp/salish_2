@@ -9,14 +9,14 @@ Salish::Application.routes.draw do
       get 'join', :on => :member
     end
   resources :memberships
-  resources :posts, path: "" do
+  resources :posts do
     resources :comments
     member do
       get 'slides'
     end
   end  
   
-  root to: 'posts#index'
+  root to: 'posts#new'
   
   match '/about', to: 'static_pages#about'
   match '/users/:id', :to => 'users#destroy', :as => :destroy_user, :via => :delete
