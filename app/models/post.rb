@@ -4,6 +4,10 @@ class Post < ActiveRecord::Base
   mount_uploader :image, ImageUploader  
   
   attr_accessible :attachment, :circle_id, :text, :tribe_id, :user_id, :attachment_filesize, :attachment_filetype, :image
+  
+  validates :text, length: { maximum: 140 }
+  validates :tribe_id, :presence => true
+  
   belongs_to :user
   belongs_to :tribe
   has_many :comments

@@ -1,29 +1,100 @@
-<%= form_for(@post, :html => { :multipart =>true }) do |f| %>
-	<%#= render 'shared/error_messages', object: @tribe %>	
-	<%= f.label :text %>
-	<%= f.text_field :text %>
-	
-  	<%= f.label :attachment, "Attachment" %>
-  	<%= f.file_field :attachment %>
 
-  	<%= f.label :image, "Image" %>
-  	<%= f.file_field :image %>
+<div class="row" style=
+"max-width:940px;
+min-width:940px;
+margin-left:auto;
+margin-right:auto;
+">
 
-	<%= f.select :tribe_id, @tribes,{:prompt => 'Select Tribe'} %>
 
-	<div id="loading">
-	    <div id="loadingcontent">
-	        <p id="loadingspinner">
-	            Creating Post...
-	        </p>
-	    </div>
+<% if @post.image? %>
+<div style="position: relative; left: 0; top: 0;">
+<%= image_tag @post.image_url(:xlarge).to_s, :style => "position:relative; top: 0px; left: 0px; z-index: 1;"  %>
+<div style="
+position:absolute;
+padding:10px;
+background-color:rgba(255,255,255,0.5);
+top: 25px; 
+left: 25px; 
+z-index: 3;
+">
+<% if @post.user.image? %>
+<%= image_tag @post.user.image_url(:tiny).to_s, :class => "usericon"  %>
+<% else %>
+<%= image_tag '/assets/blank_user.png' %>
+<% end %>
+<span style="font-size:24px"><%= @post.user.combined_name %></span>
+</div>
+
+
+	<div class="text1" style="
+	position:absolute;
+	padding:10px;
+	background-color:rgba(255,255,255,0.5);
+	bottom:25px;
+	left: 25px; 
+	z-index: 3;
+	margin-right:25px;
+	display: block;
+	font-size:24px;
+	line-height:28px;
+	">
+	<%= @post.text %>
 	</div>
 
-	<%= f.submit "Update", class: "btn btn-large btn-primary", :id => "submitbtn" %>
-	
 
-	
+</div>
+
+<% else %>
+
+
+<%= @post.text %><br>
+
+<audio controls>
+  <source src="<%= @post.attachment_url %>" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+
+
 <% end %>
+<br>
+<div class="row">
+
+
+		<div class="well span4 offset4" style="width:290px;">
+
+		<%= form_for(@post, :html => { :multipart =>true }) do |f| %>
+			<%= render 'shared/error_messages', object: @post %>	
+			<%= image_tag('pencil.png', :class => "pull-left") %><h2 style="text-align:left;margin-left:60px;margin-bottom:30px;padding-top:5px">Edit</h2>
+			<p class="muted" style="margin-top:0px;padding-top:0px">Use just one item below, or combine all three into one beautiful post...</p>		
+			<hr>
+		  	<%= f.label :image, "Image" %><br>
+		  	<%= f.file_field :image %>
+			<hr>
+		  	<%= f.label :attachment, "Attachment" %><br>
+		  	<%= f.file_field :attachment %>
+			<p class="muted" style="margin-top:0px;padding-top:0px">zip, rar, mp3, mov etc...</p>		
+			<hr>
+			<%= f.text_area :text, :style => "margin-top:0px;margin-right:5px; width:275px; font-size:18px !important", :rows => "4", placeholder: "Caption..." %>
+			<hr>	
+			<%= f.select :tribe_id, @tribes, :style => "width:275px;margin-bottom:15px" %>
+
+			<div id="loading">
+			    <div id="loadingcontent">
+			        <p id="loadingspinner">
+			            Updating Post...
+			        </p>
+			    </div>
+			</div>
+			<br>
+			<%= f.submit "Preview Post", class: "btn btn-large btn-primary", :id => "submitbtn", :style => "margin-left:0px" %>
+	
+		<% end %>
+
+		</div>
+
+</div>
 
 <script type="text/javascript" 
         src="@Url.Content("~/Scripts/spin.min.js")"></script>

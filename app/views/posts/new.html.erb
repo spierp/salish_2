@@ -4,9 +4,9 @@
 		<div class="well span4 offset4" style="width:290px;">
 
 		<%= form_for(@post, :html => { :multipart =>true }) do |f| %>
-			<%#= render 'shared/error_messages', object: @tribe %>	
+			<%= render 'shared/error_messages', object: @post %>	
 			<%= image_tag('pencil.png', :class => "pull-left") %><h2 style="text-align:left;margin-left:60px;margin-bottom:30px;padding-top:5px">Compose</h2>
-			<p class="muted" style="margin-top:0px;padding-top:0px">Use just one item below, or combine all of them into one beautiful post...</p>		
+			<p class="muted" style="margin-top:0px;padding-top:0px">Use just one item below, or combine all three into one beautiful post...</p>		
 			<hr>
 		  	<%= f.label :image, "Image" %><br>
 		  	<%= f.file_field :image %>

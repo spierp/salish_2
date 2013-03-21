@@ -1,2 +1,76 @@
-<%= render @posts %>
+<% for post in @posts %>
 
+<div class="row" style=
+"max-width:940px;
+min-width:940px;
+margin-left:auto;
+margin-right:auto;
+">
+<h4><%= link_to "Posted", "posts/#{post.id}/edit" %> <%= time_ago_in_words(post.created_at) %> ago:</h4><br>
+
+<% if post.image? %>
+<div style="position: relative; left: 0; top: 0;">
+<%= image_tag post.image_url(:xlarge).to_s, :style => "position:relative; top: 0px; left: 0px; z-index: 1;"  %>
+<div style="
+position:absolute;
+padding:10px;
+background-color:rgba(255,255,255,0.5);
+top: 25px; 
+left: 25px; 
+z-index: 3;
+">
+<% if post.user.image? %>
+<%= image_tag post.user.image_url(:tiny).to_s, :class => "usericon"  %>
+<% else %>
+<%= image_tag '/assets/blank_user.png' %>
+<% end %>
+<span style="font-size:24px"><%= post.user.combined_name %></span>
+</div>
+
+
+	<div class="text1" style="
+	position:absolute;
+	padding:10px;
+	background-color:rgba(255,255,255,0.5);
+	bottom:25px;
+	left: 25px; 
+	z-index: 3;
+	margin-right:25px;
+	display: block;
+	font-size:24px;
+	line-height:28px;
+	">
+	<%= post.text %>
+	</div>
+
+
+</div>
+
+<% elsif post.attachment? %>
+
+
+<%= post.text %><br>
+
+<audio controls>
+  <source src="<%= post.attachment_url %>" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<% else %>
+none
+
+<% end %>
+
+<% if post.comments.any? %>
+<br>
+<div class="span6">
+	<div class="well">	
+	    <div id='com'>
+	      <%= render post.comments %>
+	    </div>
+	</div>
+</div>
+<% end %>
+</div>
+<hr>
+<% end %>
