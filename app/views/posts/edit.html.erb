@@ -87,8 +87,13 @@ Your browser does not support the audio element.
 			        </p>
 			    </div>
 			</div>
-			<br>
-			<%= f.submit "Preview Post", class: "btn btn-large btn-primary", :id => "submitbtn", :style => "margin-left:0px" %>
+
+			<%= button_to "Delete", @post, class: "btn btn-danger btn-small", 
+										:style => "margin-top:27px;font-size:16px !important; float:left",
+										method: :delete,
+										confirm: "You sure?", 
+										title: @post.text %>
+			<%= f.submit "Update Post", class: "btn btn-large btn-primary", :id => "submitbtn", :style => "margin-left:0px; float:right" %>
 	
 		<% end %>
 

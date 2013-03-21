@@ -6,7 +6,7 @@ min-width:940px;
 margin-left:auto;
 margin-right:auto;
 ">
-<h4><%= link_to "Posted", "posts/#{post.id}/edit" %> <%= time_ago_in_words(post.created_at) %> ago:</h4><br>
+<h4><%= link_to "Posted", "/posts/#{post.id}/edit" %> <%= time_ago_in_words(post.created_at) %> ago:</h4><br>
 
 <% if post.image? %>
 <div style="position: relative; left: 0; top: 0;">
