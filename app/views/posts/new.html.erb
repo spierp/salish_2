@@ -1,7 +1,7 @@
 <div class="row">
 
 
-		<div class="well span4 offset4" style="width:290px;">
+		<div class="well" style="width:270px; margin-left:auto; margin-right:auto;">
 
 		<%= form_for(@post, :html => { :multipart =>true }) do |f| %>
 			<%= render 'shared/error_messages', object: @post %>	
@@ -15,11 +15,11 @@
 			<%= image_tag('doc-icon.png', :class => "pull-left") %>			
 		  	<%= f.label :attachment, "Attachment", :style => "margin-left:5px" %><br>
 		  	<%= f.file_field :attachment %>
-			<p class="muted" style="margin-top:0px;padding-top:0px">zip, rar, mp3, mov etc...</p>		
+			<p class="muted" style="margin-top:0px;padding-top:0px">mp3, mov, zip, rar, etc...</p>		
 			<hr>
-			<%= f.text_area :text, :style => "margin-top:0px;margin-right:5px; width:275px; font-size:18px !important", :rows => "4", placeholder: "Caption..." %>
+			<%= f.text_area :text, :style => "margin-top:0px;margin-right:5px; width:260px; font-size:18px !important", :rows => "4", placeholder: "Caption..." %>
 			<hr>	
-			<%= f.select :tribe_id, @tribes, :style => "width:275px;margin-bottom:15px" %>
+			<%= f.select :tribe_id, @tribes, :style => "width:260px; margin-bottom:15px" %>
 
 			<div id="loading">
 			    <div id="loadingcontent">

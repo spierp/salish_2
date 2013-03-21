@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(params[:post])
     if @post.save
-      flash[:success] = "Posted!"
+      flash[:success] = "Preview created!"
       redirect_to @post
     else    
       render 'new'
